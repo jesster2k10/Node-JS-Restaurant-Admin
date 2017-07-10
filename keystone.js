@@ -25,7 +25,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'mongo': process.env.MONGO_URI || "mongodb://localhost/your-db"
+	'mongo': process.env.MONGODB_URI || "mongodb://heroku_2qfmn488:te390ajsqsj8oqq1fliqig4pdp@ds133981.mlab.com:33981/heroku_2qfmn488"
 });
 
 // Load your project's Models
