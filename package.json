@@ -1,0 +1,27 @@
+{
+  "name": "your-restaurant",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "2.1.4",
+    "dotenv": "4.0.0",
+    "keystone": "4.0.0-beta.5",
+    "keystone-email": "1.0.5",
+    "keystone-social-login": "github:johnnyestilles/keystone-social-login",
+    "lodash": "^4.13.1",
+    "node-sass": "4.5.0",
+    "node-sass-middleware": "0.11.0",
+    "nodemon": "^1.11.0",
+    "pug": "2.0.0-beta11",
+    "restful-keystone": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "3.15.0",
+    "eslint-config-keystone": "3.0.0",
+    "eslint-plugin-react": "^5.1.1"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "start": "nodemon keystone.js"
+  }
+}
