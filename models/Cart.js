@@ -15,7 +15,7 @@ var Cart = new keystone.List('Cart', {
 });
 
 Cart.add({
-	products: { type: Types.Relationship, ref: 'Product', many: true, required: true, initial: true },
+	products: { type: Types.Relationship, ref: 'Meal', many: true, required: true, initial: true },
 	creationDate : { type: Types.Datetime, default: Date.now, initial: true, required: true }
 });
 

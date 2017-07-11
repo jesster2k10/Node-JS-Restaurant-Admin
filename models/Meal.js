@@ -5,15 +5,15 @@ var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
 /**
- * Product Model
+ * Meal Model
  * ==========
  */
 
-var Product = new keystone.List('Product', {
+var Meal = new keystone.List('Meal', {
 	autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-Product.add({
+Meal.add({
 	name: { type: Types.Text, required: true, initial: true },
 	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true },
 	images: { type: Types.CloudinaryImages, required: true, initial: true},
@@ -21,7 +21,7 @@ Product.add({
 	chargesTax: { type: Types.Boolean, required: true, default: true },
 	tax: { type: Types.Money, format: '€0,0.00', required: false },
 	description: { type: Types.Textarea, required: true, initial: true },	
-	categories: { type: Types.Relationship, ref: 'ProductCategory', many: true, required: true, initial: true },
+	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true },
 	serves: { type: Types.Select, required: true, initial: true, options: [
 		{ value: '1', label: '1' },
 		{ value: '2', label: '2' },
@@ -39,4 +39,4 @@ Product.add({
 	isFeatured: { type: Types.Boolean, required: true, initial: true }
 });
 
-Product.register();
+Meal.register();

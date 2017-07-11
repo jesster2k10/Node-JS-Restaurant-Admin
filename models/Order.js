@@ -25,7 +25,7 @@ Order.add({
 	delivery: { type: Types.Money, format: '€0,0.00', required: false },
 	orderDate: { type: Types.Datetime, default: Date.now, required: true, initial: false },
 	orderNote: { type: String, required: false },
-	products: { type: Types.Relationship, ref: 'Product', many: true, initial: true }
+	products: { type: Types.Relationship, ref: 'Meal', many: true, initial: true }
 });
 
 Order.register();

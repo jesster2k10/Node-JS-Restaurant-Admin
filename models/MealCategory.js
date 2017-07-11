@@ -5,20 +5,20 @@ var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
 /**
- * ProductCategory Model
+ * MealCategory Model
  * ==================
  */
 
-var ProductCategory = new keystone.List('ProductCategory', {
+var MealCategory = new keystone.List('MealCategory', {
 	autokey: { from: 'name', path: 'key', unique: true },
 });
 
-ProductCategory.add({
+MealCategory.add({
 	name: { type: Types.Text, required: true, initial: true },
 	excerpt: { type: Types.Text, required: true, initial: true },
 	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true }
 });
 
-ProductCategory.relationship({ ref: 'Product', path: 'products', refPath: 'categories' });
+MealCategory.relationship({ ref: 'Meal', path: 'meals', refPath: 'categories' });
 
-ProductCategory.register();
+MealCategory.register();

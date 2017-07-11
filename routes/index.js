@@ -83,11 +83,11 @@ exports = module.exports = function (app) {
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
-		Product: {
+		Meal: {
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},
-		ProductCategory: {
+		MealCategory: {
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},

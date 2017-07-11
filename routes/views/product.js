@@ -17,7 +17,7 @@ exports = module.exports = function (req, res) {
 	// Load the current post
 	view.on('init', function (next) {
 
-		var q = keystone.list('Product').model.findOne({
+		var q = keystone.list('Meal').model.findOne({
 			slug: locals.filters.post,
 		}).populate('author categories');
 
@@ -31,7 +31,7 @@ exports = module.exports = function (req, res) {
 	// Load other posts
 	view.on('init', function (next) {
 
-		var q = keystone.list('Product').limit('4');
+		var q = keystone.list('Meal').limit('4');
 
 		q.exec(function (err, results) {
 			locals.data.posts = results;
