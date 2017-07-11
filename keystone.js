@@ -4,6 +4,7 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
+var passport = require('passport');
 
 // Require social
 var social = require('keystone-social-login');
@@ -32,6 +33,9 @@ keystone.init({
 	'user model': 'User',
 	'mongo': process.env.MONGODB_URI || "mongodb://127.0.0.1:27017"
 });
+
+keystone.pre('routes', passport.initialize());
+keystone.pre('routes', passport.session());
 
 social.config({
 	keystone: keystone,

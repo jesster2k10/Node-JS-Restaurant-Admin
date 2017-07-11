@@ -13,6 +13,8 @@
     "node-sass": "4.5.0",
     "node-sass-middleware": "0.11.0",
     "nodemon": "^1.11.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "pug": "2.0.0-beta11",
     "restful-keystone": "^0.3.0"
   },

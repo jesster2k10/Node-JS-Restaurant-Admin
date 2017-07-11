@@ -9,6 +9,88 @@
  */
 var _ = require('lodash');
 
+// middleware
+exports.checkAuth = function checkAuth(req, res, next) {
+	// // you could check user permissions here too
+	// if (req.user) return next();
+	// return res.status(403).json({ 'error': 'no access' });
+	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	// decode token
+	if (token) {
+
+		// verifies secret and checks exp
+		jwt.verify(token, process.env.TOKEN_SECRET, function(err, decoded) {
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;
+				next();
+			}
+		});
+
+	} else {
+
+		// if there is no token
+		// return an error
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+
+	}
+}
+
+exports.signin = function signin(req, res) {
+
+	if (!req.body.username || !req.body.password) return res.json({ success: false });
+
+	keystone.list('User').model.findOne({ email: req.body.username }).exec(function(err, user) {
+
+		if (err || !user) {
+			return res.json({
+				success: false,
+				session: false,
+				token: nil,
+				message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
+			});
+		}
+
+		keystone.session.signin({ email: user.email, password: req.body.password }, req, res, function(user) {
+			var token = jwt.sign(user, process.env.TOKEN_SECRET, {
+				expiresIn: '7d' // expires in 7 days
+			});
+
+			return res.json({
+				success: true,
+				session: true,
+				token: token,
+				date: new Date().getTime(),
+				userId: user.id
+			});
+
+		}, function(err) {
+
+			return res.json({
+				success: true,
+				session: false,
+				token: nil,
+				message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
+			});
+
+		});
+
+	});
+}
+
+// you'll want one for signout too
+exports.signout = function signout(req, res) {
+	keystone.session.signout(req, res, function () {
+		res.json({'signed_out': true});
+	});
+}
+
 
 /**
 	Initialises the standard view locals

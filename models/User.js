@@ -14,6 +14,15 @@ User.add({
 	password: { type: Types.Password, initial: true, required: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+}, 'Social Accounts', {
+	facebook: {
+		ID: { type: String, required: false },
+		token: { type: String, required: false }
+	},
+	google: {
+		ID: { type: String, required: false },
+		token: { type: String, required: false }
+	}
 });
 
 // Provide access to Keystone
@@ -21,10 +30,6 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;
 });
 
-/**
- * Social
- */
-social.plugin(User);
 
 /**
  * Relationships
