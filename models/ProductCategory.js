@@ -15,7 +15,7 @@ var ProductCategory = new keystone.List('ProductCategory', {
 
 ProductCategory.add({
 	name: { type: Types.Text, required: true, initial: true },
-	excerpt: { type: Types.text, required: true, inital: true }
+	excerpt: { type: Types.text, required: true, inital: true },
 	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true }
 });
 
