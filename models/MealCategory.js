@@ -10,7 +10,7 @@ var keystone = require('keystone'),
  */
 
 var MealCategory = new keystone.List('MealCategory', {
-	autokey: { from: 'name', path: 'key', unique: true },
+	autokey: { from: 'slug', path: 'title', unique: true },
 });
 
 MealCategory.add({
