@@ -17,9 +17,6 @@ Meal.add({
 	name: { type: Types.Text, required: true, initial: true },
 	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true },
 	images: { type: Types.CloudinaryImages, required: true, initial: true},
-	totalCost: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
-	chargesTax: { type: Types.Boolean, required: true, default: true },
-	tax: { type: Types.Money, format: '€0,0.00', required: false },
 	description: { type: Types.Textarea, required: true, initial: true },	
 	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true },
 	serves: { type: Types.Select, required: true, initial: true, options: [
@@ -37,6 +34,40 @@ Meal.add({
 	] },
 	isAvailable: { type: Types.Boolean, required: true, initial: true},
 	isFeatured: { type: Types.Boolean, required: true, initial: true }
-});
+}, "Cost", {
+		currency: { type: Types.Select, required: true, initial: true, options: [
+			{ value: 'USD', label: 'USD' },
+			{ value: 'EUR', label: 'EUR' },
+			{ value: 'GBP', label: 'GBP' },
+			{ value: 'AUD', label: 'AUD' },
+			{ value: 'CHF', label: 'CHF' },
+			{ value: 'JPY', label: 'JPY' },
+			{ value: 'CAD', label: 'CAD' },
+			{ value: 'INR', label: 'INR' },
+			{ value: 'NGN', label: 'NGN' },
+		] },	totalCost: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
+	chargesTax: { type: Types.Boolean, required: true, default: true },
+	taxPercentage: { type: Types.Number, initial: true, required: false },
+}, "Option One", {
+	enableOptionOne: {type: Types.Boolean, required: true, default: false},
+	optionOne: {
+		name: { type: Types.Text, required: false },
+		cost: { type: Types.Money, format: '€0,0.00', required: false },
+	}
+}, "Option Two", {
+	enableOptionTwo: {type: Types.Boolean, required: true, default: false}, 
+	optionTwo: {
+		name: { type: Types.Text, required: false },
+		cost: { type: Types.Money, format: '€0,0.00', required: false },
+	}
+}, "Option Three", {
+		enableOptionThree: {type: Types.Boolean, required: true, default: false},
+		optionThree: {
+			name: { type: Types.Text, required: false },
+			cost: { type: Types.Money, format: '€0,0.00', required: false },
+		}
+	}
+
+);
 
 Meal.register();
