@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var social = require('keystone-social-login');
 
 /**
  * User Model
@@ -20,6 +21,10 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;
 });
 
+/**
+ * Social
+ */
+social.plugin(User);
 
 /**
  * Relationships

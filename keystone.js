@@ -5,6 +5,9 @@ require('dotenv').config();
 // Require keystone
 var keystone = require('keystone');
 
+// Require social
+var social = require('keystone-social-login');
+
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -21,11 +24,27 @@ keystone.init({
 
 	'emails': 'templates/emails',
 
+	'signin logo': ['../images/logo.png', 200, 200],
+
 	'auto update': true,
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'mongo': process.env.MONGODB_URI || "mongodb://heroku_2qfmn488:te390ajsqsj8oqq1fliqig4pdp@ds133981.mlab.com:33981/heroku_2qfmn488"
+	'mongo': process.env.MONGODB_URI || "mongodb://127.0.0.1:27017"
+});
+
+social.config({
+	keystone: keystone,
+	providers: {
+		facebook: {
+			clientID: process.env.FACEBOOK_CLIENT_ID,
+			clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+		},
+		google: {
+			clientID: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET
+		}
+	}
 });
 
 // Load your project's Models
@@ -44,6 +63,8 @@ keystone.set('locals', {
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
+// start social
+//social.start();
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {

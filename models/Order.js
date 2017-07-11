@@ -22,6 +22,7 @@ Order.add({
 	total: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
 	chargesTax: { type: Types.Boolean, default: true, required: true, initial: false },
 	tax: { type: Types.Money, format: '€0,0.00', required: false },
+	delivery: { type: Types.Money, format: '€0,0.00', required: false },
 	orderDate: { type: Types.Datetime, default: Date.now, required: true, initial: false },
 	orderNote: { type: String, required: false },
 	products: { type: Types.Relationship, ref: 'Product', many: true, initial: true }
