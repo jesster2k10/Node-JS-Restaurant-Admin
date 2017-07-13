@@ -1,6 +1,5 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
-var social = require('keystone-social-login');
 
 /**
  * User Model
