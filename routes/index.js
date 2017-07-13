@@ -51,6 +51,7 @@ keystone.set('500', function(err, req, res, next) {
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
+	api: importRoutes('./api')
 };
 
 // Setup Route Bindings
@@ -87,6 +88,8 @@ exports = module.exports = function (app) {
 			successRedirect : '/',
 			failureRedirect : '/'
 		}));
+	
+	app.get('/api/meal-categories/:id/meals', routes.api.meals.meals);
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
