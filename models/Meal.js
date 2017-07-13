@@ -49,19 +49,19 @@ Meal.add({
 	chargesTax: { type: Types.Boolean, required: true, default: true },
 	taxPercentage: { type: Types.Number, initial: true, required: false },
 }, "Option One", {
-	enableOptionOne: {type: Types.Boolean, required: true, default: false, initial: false},
+	enableOptionOne: {type: Types.Boolean, required: false, default: false, initial: false},
 	optionOne: {
 		name: { type: Types.Text, required: false },
 		cost: { type: Types.Money, format: '€0,0.00', required: false },
 	}
 }, "Option Two", {
-	enableOptionTwo: {type: Types.Boolean, required: true, default: false, initial: false }, 
+	enableOptionTwo: {type: Types.Boolean, required: false, default: false, initial: false }, 
 	optionTwo: {
 		name: { type: Types.Text, required: false },
 		cost: { type: Types.Money, format: '€0,0.00', required: false },
 	}
 }, "Option Three", {
-		enableOptionThree: {type: Types.Boolean, required: true, default: false, initial: false},
+		enableOptionThree: {type: Types.Boolean, required: false, default: false, initial: false},
 		optionThree: {
 			name: { type: Types.Text, required: false },
 			cost: { type: Types.Money, format: '€0,0.00', required: false },
