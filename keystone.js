@@ -28,7 +28,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'mongo': process.env.MONGODB_URI || "mongodb://127.0.0.1:27017"
+	'mongo': process.env.MONGODB_URI || "mongodb://heroku_2qfmn488:te390ajsqsj8oqq1fliqig4pdp@ds133981.mlab.com:33981/heroku_2qfmn488"
 });
 
 keystone.pre('routes', passport.initialize());
