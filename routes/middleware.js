@@ -8,6 +8,8 @@
  * modules in your project's /lib directory.
  */
 var _ = require('lodash');
+var jwt = require('jsonwebtoken');
+var keystone = require('keystone');
 
 // middleware
 exports.checkAuth = function checkAuth(req, res, next) {
@@ -43,7 +45,10 @@ exports.checkAuth = function checkAuth(req, res, next) {
 }
 
 exports.signin = function signin(req, res) {
+	console.log('sign in');
 
+	debugger;
+	
 	if (!req.body.username || !req.body.password) return res.json({ success: false });
 
 	keystone.list('User').model.findOne({ email: req.body.username }).exec(function(err, user) {

@@ -16,7 +16,9 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pug": "2.0.0-beta11",
-    "restful-keystone": "^0.3.0"
+    "res-error": "^0.3.1",
+    "restful-keystone": "^0.3.0",
+    "serialize-error": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "3.15.0",
