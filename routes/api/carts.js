@@ -24,4 +24,25 @@ exports.addProductToCart = function (req, res) {
 			}
 		})
 	}
+};
+
+exports.removeProductFromCart = function (req, res) {
+	if (req.body.product !== undefined) {
+		Cart.model.update({ _id: req.params.id }, { $pullAll: {products: [req.body.product] } }).exec(function (err, items) {
+			if (err) return res.json({error: err });
+
+			res.json({
+				results: {
+					products: items
+				}
+			});
+		})
+	} else {
+		res.json({
+			error: {
+				message: 'No product identifier was found'
+			}
+		})
+	}
 }
+

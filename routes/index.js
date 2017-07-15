@@ -74,6 +74,7 @@ exports = module.exports = function (app) {
 	app.post('/api/sign_out', middleware.signout);
 	
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
+	app.delete('/api/carts/:id/products', routes.api.carts.removeProductFromCart);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
