@@ -8,31 +8,33 @@ let async = require('async'),
 let jwt = require('jsonwebtoken');
 
 exports.signIn = function(req, res, done) {
-	let token = req.body.token;
-	axios.get(`https://graph.facebook.com/v2.8/me?fields=id,name,email&access_token=${token}`).then(function (response) {
-		let facebook_id = response.data.id;
-		let name = response.data.name;
-		let email = response.data.email;
+	let fbUser = req.body.facebook_user;
+	
+	if (fbUser === undefined) {
+		res.json({ success: false, error: 'No user was found' });
+		return;
+	}
+	
+	let facebook_id = fbUser.id;
+	let firstName = fbUser.first_name;
+	let lastName = fbUser.last_name;
+	let email = fbUser.email;
 
-		keystone.list('User').model.findOne({  email: email }).exec(function(err, users) {
-			user = users[0];
-			
+	keystone.list('User').model.findOne({  'facebook.ID': facebook_id }).exec(function(err, user) {
 			if (err) {
 				return done( { success: false, error: err });
 			}
 
 			// if the user is found, then log them in
 			if (user) {
-				let names = user.name.split(' ');
-				
 				var tokenUser = {
 					email: user.email,
 					name: {
-						first: names[0],
-						last: names[1]
+						first: user.name.first,
+						last: user.name.last
 					},
 					facebook: {
-						ID: user._id,
+						ID: user.facebook.ID,
 					}
 				};
 
@@ -45,14 +47,11 @@ exports.signIn = function(req, res, done) {
 				// if there is no user found with that facebook id, create them
 
 				var newUser = new keystone.List('User');
-				
-				let names = name.split(' ');
 
 				// set all of the facebook information in our user model
 				newUser.facebook.ID = facebook_id; // set the users facebook id                   
-				newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-				newUser.name.first = names[0]; // look at the passport user profile to see how names are returned
-				newUser.name.last = names[1];
+				newUser.name.first = firstName; // look at the passport user profile to see how names are returned
+				newUser.name.last = lastName;
 				newUser.email = email; // facebook can return multiple emails so we'll take the first
 
 				// save our user to the database
@@ -69,7 +68,6 @@ exports.signIn = function(req, res, done) {
 						},
 						facebook: {
 							ID: newUser.facebook.ID,
-							token: newUser.facebook.token
 						}
 					};
 
@@ -82,7 +80,4 @@ exports.signIn = function(req, res, done) {
 				});
 			}
 		});
-	}).catch(function(error) {
-		return next(error);
-	});
 }
