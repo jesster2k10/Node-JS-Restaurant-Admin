@@ -130,11 +130,12 @@ exports = module.exports = function (app) {
 		},
 		User: {
 			envelop: "results",
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve", "create"]
 		}
 	}).before("update remove create list retrieve", {
 		Order: middleware.checkAuth,
 		Cart: middleware.checkAuth,
+		User: middleware.checkAdminKey
 	}).start();
 
 };
