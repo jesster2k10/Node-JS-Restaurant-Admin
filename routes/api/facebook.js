@@ -46,7 +46,7 @@ exports.signIn = function(req, res, done) {
 			} else {
 				// if there is no user found with that facebook id, create them
 
-				let newUser = new keystone.List('User');
+				let newUser = new keystone.List('User').model;
 
 				// set all of the facebook information in our user model
 				newUser.facebook = {
