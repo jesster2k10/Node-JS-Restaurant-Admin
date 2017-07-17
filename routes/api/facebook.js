@@ -3,9 +3,7 @@
  */
 let async = require('async'),
 	keystone = require('keystone'),
-	axios = require('axios');
-
-let jwt = require('jsonwebtoken');
+	jwt = require('jsonwebtoken');
 
 exports.signIn = function(req, res, done) {
 	let fbUser = req.body.facebook_user;
