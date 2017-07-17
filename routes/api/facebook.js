@@ -10,7 +10,7 @@ let jwt = require('jsonwebtoken');
 exports.signIn = function(req, res, done) {
 	let fbUser = req.body.facebook_user;
 	
-	if (fbUser === undefined) {
+	if (fbUser === undefined || fbUser === null) {
 		res.json({ success: false, error: 'No user was found' });
 		return;
 	}
@@ -19,6 +19,7 @@ exports.signIn = function(req, res, done) {
 	let firstName = fbUser.first_name;
 	let lastName = fbUser.last_name;
 	let email = fbUser.email;
+	let token = req.body.access_token;
 
 	keystone.list('User').model.findOne({  'facebook.ID': facebook_id }).exec(function(err, user) {
 			if (err) {
@@ -35,6 +36,7 @@ exports.signIn = function(req, res, done) {
 					},
 					facebook: {
 						ID: user.facebook.ID,
+						token: token
 					}
 				};
 
@@ -68,6 +70,7 @@ exports.signIn = function(req, res, done) {
 						},
 						facebook: {
 							ID: newUser.facebook.ID,
+							token: token
 						}
 					};
 
