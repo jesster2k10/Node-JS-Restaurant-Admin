@@ -46,19 +46,21 @@ exports.signIn = function(req, res, done) {
 			} else {
 				// if there is no user found with that facebook id, create them
 
-				let newUser = new keystone.List('User').model;
-
-				// set all of the facebook information in our user model
-				newUser.facebook.ID = facebook_id;
-				newUser.facebook.token = token;
+				let User = keystone.List('User').model;
 				
-				// set the users facebook id                   
-				newUser.name = {
-					first: firstName,
-					last: lastName
-				}; // look at the passport user profile to see how names are returned
-				newUser.email = email; // facebook can return multiple emails so we'll take the first
-
+				let newUser = new User({
+					facebook: {
+						ID: facebook_id,
+						token: token
+					},
+					name: {
+						first: firstName,
+						last: lastName
+					},
+					email: email,
+					isAdmin: false
+				});
+				
 				// save our user to the database
 				newUser.save(function (err) {
 					if (err) {
