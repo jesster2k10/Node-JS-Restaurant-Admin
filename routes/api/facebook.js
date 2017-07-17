@@ -26,7 +26,7 @@ exports.signIn = function(req, res, done) {
 
 			// if the user is found, then log them in
 			if (user) {
-				var tokenUser = {
+				let tokenUser = {
 					email: user.email,
 					name: {
 						first: user.name.first,
@@ -38,7 +38,7 @@ exports.signIn = function(req, res, done) {
 					}
 				};
 
-				var token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
+				let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
 					expiresIn: '7d' // expires in 7 days
 				});
 
@@ -46,12 +46,17 @@ exports.signIn = function(req, res, done) {
 			} else {
 				// if there is no user found with that facebook id, create them
 
-				var newUser = new keystone.List('User');
+				let newUser = new keystone.List('User');
 
 				// set all of the facebook information in our user model
-				newUser.facebook.ID = facebook_id; // set the users facebook id                   
-				newUser.name.first = firstName; // look at the passport user profile to see how names are returned
-				newUser.name.last = lastName;
+				newUser.facebook = {
+					ID: facebook_id,
+					token: token
+				}; // set the users facebook id                   
+				newUser.name = {
+					first: firstName,
+					last: lastName
+				}; // look at the passport user profile to see how names are returned
 				newUser.email = email; // facebook can return multiple emails so we'll take the first
 
 				// save our user to the database
@@ -60,7 +65,7 @@ exports.signIn = function(req, res, done) {
 						throw err;
 					}
 
-					var tokenUser = {
+					let tokenUser = {
 						email: newUser.email,
 						name: {
 							first: newUser.name.first,
@@ -72,7 +77,7 @@ exports.signIn = function(req, res, done) {
 						}
 					};
 
-					var token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
+					let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
 						expiresIn: '7d' // expires in 7 days
 					});
 
