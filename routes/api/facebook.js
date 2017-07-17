@@ -49,10 +49,10 @@ exports.signIn = function(req, res, done) {
 				let newUser = new keystone.List('User').model;
 
 				// set all of the facebook information in our user model
-				newUser.facebook = {
-					ID: facebook_id,
-					token: token
-				}; // set the users facebook id                   
+				newUser.facebook.ID = facebook_id;
+				newUser.facebook.token = token;
+				
+				// set the users facebook id                   
 				newUser.name = {
 					first: firstName,
 					last: lastName
