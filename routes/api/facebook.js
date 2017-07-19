@@ -17,6 +17,7 @@ exports.signIn = function(req, res, done) {
 	let firstName = fbUser.first_name;
 	let lastName = fbUser.last_name;
 	let email = fbUser.email;
+	let profileImage = `http://graph.facebook.com/${facebook_id}/picture`;
 
 	keystone.list('User').model.findOne({  'email': email }).exec(function(err, user) {
 			if (err) {
@@ -33,8 +34,9 @@ exports.signIn = function(req, res, done) {
 					},
 					facebook: {
 						ID: user.facebook.ID,
-						token: user.facebook.access_token
-					}
+						token: user.facebook.token
+					},
+					profileImage: user.profileImage
 				};
 
 				let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
@@ -56,7 +58,8 @@ exports.signIn = function(req, res, done) {
 							last: lastName
 						},
 						email: email,
-						isAdmin: false
+						isAdmin: false,
+						profileImage: profileImage
 					}
 				}, (err, status) => {
 					stats && console.log(stats.message);
