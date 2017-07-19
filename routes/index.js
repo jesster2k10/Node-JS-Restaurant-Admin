@@ -55,7 +55,7 @@ var routes = {
 };
 
 // Setup Route Bindings
-exports = module.exports = function (app, passport) {
+exports = module.exports = function (app) {
 	// Views
 	app.get('/', function(req, res) {
 		if (req.user) {
@@ -82,17 +82,17 @@ exports = module.exports = function (app, passport) {
 	// =====================================
 	// FACEBOOK ROUTES =====================
 	// =====================================
-	// route for facebook authentication and login
-	app.get('/api/auth/facebook', passport.authenticate('facebook'));
-	
+	// // route for facebook authentication and login
+	// app.get('/api/auth/facebook', passport.authenticate('facebook'));
+	//
 	app.post('/api/auth/facebook', routes.api.facebook.signIn);
-
-	// handle the callback after facebook has authenticated the user
-	app.get('/api/auth/facebook/callback',
-		passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
-		// Redirect user back to the mobile app using Linking with a custom protocol OAuthLogin
-		(req, res) => res.redirect('restaurant://login?user=' + JSON.stringify(req.user)));
-	
+    //
+	// // handle the callback after facebook has authenticated the user
+	// app.get('/api/auth/facebook/callback',
+	// 	passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
+	// 	// Redirect user back to the mobile app using Linking with a custom protocol OAuthLogin
+	// 	(req, res) => res.redirect('restaurant://login?user=' + JSON.stringify(req.user)));
+	//
 	app.get('/api/meal-categories/:id/meals', routes.api.meals.meals);
 
 	//Explicitly define which lists we want exposed
