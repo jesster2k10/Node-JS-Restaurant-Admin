@@ -48,7 +48,7 @@ keystone.set('locals', {
 });
 
 // Load your project's Routes
-keystone.set('routes', require('./routes'));
+keystone.set('routes', require('./routes')(passport));
 
 
 // Configure the navigation bar in Keystone's Admin UI

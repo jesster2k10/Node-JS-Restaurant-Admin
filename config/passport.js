@@ -1,12 +1,26 @@
 /**
  * Created by jesseonolememen on 11/07/2017.
  */
+
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var keystone = require('keystone');
 var jwt = require('jsonwebtoken');
 
 const User = new keystone.List('User');
+
+const transformFacebookProfile = (profile) => ({
+	name: profile.name,
+	avatar: profile.picture.data.url,
+});
+
+// Transform Google profile into user object
+const transformGoogleProfile = (profile) => ({
+	name: profile.displayName,
+	avatar: profile.image.url,
+});
+
 
 module.exports = function (passport) {
 
@@ -64,7 +78,7 @@ module.exports = function (passport) {
 					} else {
 						// if there is no user found with that facebook id, create them
 
-						var newUser = new keystone.List('User');
+						var newUser = new keystone.List('User').model;
 
 						// set all of the facebook information in our user model
 						newUser.facebook.ID     = profile.id; // set the users facebook id                   

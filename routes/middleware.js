@@ -148,6 +148,7 @@ exports.requireUser = function (req, res, next) {
 exports.initErrorHandlers = function(req, res, next) {
 
 	res.err = function(err, title, message) {
+		console.log(err);
 		res.status(500).render('errors/500', {
 			err: err,
 			errorTitle: title,

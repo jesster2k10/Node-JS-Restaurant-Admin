@@ -7,8 +7,8 @@ let async = require('async'),
 
 exports.signIn = function(req, res, done) {
 	let fbUser = req.body.facebook_user;
-	
-	if (fbUser === undefined || fbUser === null) {
+
+	if (!(fbUser)) {
 		res.json({ success: false, error: 'No user was found' });
 		return;
 	}
@@ -17,9 +17,8 @@ exports.signIn = function(req, res, done) {
 	let firstName = fbUser.first_name;
 	let lastName = fbUser.last_name;
 	let email = fbUser.email;
-	let token = req.body.access_token;
 
-	keystone.list('User').model.findOne({  'facebook.ID': facebook_id }).exec(function(err, user) {
+	keystone.list('User').model.findOne({  'email': email }).exec(function(err, user) {
 			if (err) {
 				return done( { success: false, error: err });
 			}
@@ -34,7 +33,7 @@ exports.signIn = function(req, res, done) {
 					},
 					facebook: {
 						ID: user.facebook.ID,
-						token: token
+						token: user.facebook.access_token
 					}
 				};
 
@@ -46,46 +45,80 @@ exports.signIn = function(req, res, done) {
 			} else {
 				// if there is no user found with that facebook id, create them
 
-				let _User = keystone.List('User').model;
-				
-				let newUser = new _User({
-					facebook: {
-						ID: facebook_id,
-						token: token
-					},
-					name: {
-						first: firstName,
-						last: lastName
-					},
-					email: email,
-					isAdmin: false
+				keystone.createItems({
+					User: {
+						facebook: {
+							ID: facebook_id,
+							token: fbUser.token
+						},
+						name: {
+							first: firstName,
+							last: lastName
+						},
+						email: email,
+						isAdmin: false
+					}
+				}, (err, status) => {
+					stats && console.log(stats.message);
 				});
+				
+				// let newUser = new UserModel.model({
+				// 	facebook: {
+				// 		ID: facebook_id,
+				// 		token: fbUser.token
+				// 	},
+				// 	name: {
+				// 		first: firstName,
+				// 		last: lastName
+				// 	},
+				// 	email: email,
+				// 	isAdmin: false
+				// });
+
+				// let tokenUser = {
+				// 	email: newUser.email,
+				// 	name: {
+				// 		first: newUser.name.first,
+				// 		last: newUser.name.last
+				// 	},
+				// 	facebook: {
+				// 		ID: newUser.facebook.ID,
+				// 		access_token: newUser.facebook.token
+				// 	}
+				// };
+                //
+				// let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
+				// 	expiresIn: '7d' // expires in 7 days
+				// });
+                //
+				// // if successful, return the new user
+				// res.json({success: true, token: token, error: null});
 				
 				// save our user to the database
-				newUser.save(function (err) {
-					if (err) {
-						throw err;
-					}
-
-					let tokenUser = {
-						email: newUser.email,
-						name: {
-							first: newUser.name.first,
-							last: newUser.name.last
-						},
-						facebook: {
-							ID: newUser.facebook.ID,
-							token: token
-						}
-					};
-
-					let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
-						expiresIn: '7d' // expires in 7 days
-					});
-
-					// if successful, return the new user
-					res.json({success: true, token: token, error: null});
-				});
+				// newUser.save(function (err) {
+				// 	if (err) {
+				// 		throw err;
+				// 	}
+                //
+				// 	let tokenUser = {
+				// 		email: newUser.email,
+				// 		name: {
+				// 			first: newUser.name.first,
+				// 			last: newUser.name.last
+				// 		},
+				// 		facebook: {
+				// 			ID: newUser.facebook.ID,
+				// 			access_token: newUser.facebook.token
+				// 		}
+				// 	};
+                //
+				// 	let token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
+				// 		expiresIn: '7d' // expires in 7 days
+				// 	});
+                //
+				// 	// if successful, return the new user
+				// 	res.json({success: true, token: token, error: null});
+				// });
 			}
 		});
 }
