@@ -4,6 +4,8 @@
 var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
+const mongoose = require('mongoose');
+
 /**
  * Meal Model
  * ==========
@@ -48,26 +50,84 @@ Meal.add({
 		] },	totalCost: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
 	chargesTax: { type: Types.Boolean, required: true, default: true },
 	taxPercentage: { type: Types.Number, initial: true, required: false },
-}, "Option One", {
-	enableOptionOne: {type: Types.Boolean, required: false, default: false, initial: false},
-	optionOne: {
-		name: { type: Types.Text, required: false },
-		cost: { type: Types.Money, format: '€0,0.00', required: false },
+},
+	"Options", {
+		enableOptions: { type: Types.Boolean, required: false, initial: false, default: false},
+		options: { type: Types.Relationship, ref: 'MealOption', many: true, initial: false }
 	}
-}, "Option Two", {
-	enableOptionTwo: {type: Types.Boolean, required: false, default: false, initial: false }, 
-	optionTwo: {
-		name: { type: Types.Text, required: false },
-		cost: { type: Types.Money, format: '€0,0.00', required: false },
-	}
-}, "Option Three", {
-		enableOptionThree: {type: Types.Boolean, required: false, default: false, initial: false},
-		optionThree: {
-			name: { type: Types.Text, required: false },
-			cost: { type: Types.Money, format: '€0,0.00', required: false },
-		}
+);
+
+// , "Option One", {
+// 	enableOptionOne: {type: Types.Boolean, required: false, default: false, initial: false},
+// 	optionOne: {
+// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
+// 		name: { type: Types.Text, required: false },
+// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
+// 	}
+// }, "Option Two", {
+// 	enableOptionTwo: {type: Types.Boolean, required: false, default: false, initial: false },
+// 	optionTwo: {
+// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
+// 		name: { type: Types.Text, required: false },
+// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
+// 	}
+// }, "Option Three", {
+// 	enableOptionThree: {type: Types.Boolean, required: false, default: false, initial: false},
+// 	optionThree: {
+// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
+// 		name: { type: Types.Text, required: false },
+// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
+// 	}
+// }
+
+function empty( val ) {
+
+	// test results
+	//---------------
+	// []        true, empty array
+	// {}        true, empty object
+	// null      true
+	// undefined true
+	// ""        true, empty string
+	// ''        true, empty string
+	// 0         false, number
+	// true      false, boolean
+	// false     false, boolean
+	// Date      false
+	// function  false
+
+	if (val === undefined)
+		return true;
+
+	if (typeof (val) == 'function' || typeof (val) == 'number' || typeof (val) == 'boolean' || Object.prototype.toString.call(val) === '[object Date]')
+		return false;
+
+	if (val == null || val.length === 0)        // null or 0 length array
+		return true;
+
+	if (typeof (val) == "object") {
+		// empty object
+
+		var r = true;
+
+		for (var f in val)
+			r = false;
+
+		return r;
 	}
 
-);
+	return false;
+}
+
+Meal.defaultColumns = 'name, featuredImage|20%, author|20%, publishedDate|20%';
+
+Meal.schema.pre('validate', function(next) {
+	if (this.enableOptions && empty(this.options) ){
+		next(Error('At least one option is required if you click "enable options"'));
+	}
+	else {
+		next();
+	}
+});
 
 Meal.register();

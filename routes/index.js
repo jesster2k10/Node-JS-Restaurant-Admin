@@ -73,6 +73,7 @@ exports = module.exports = function (app) {
 	app.post('/api/sign_in', middleware.signin);
 	app.post('/api/sign_out', middleware.signout);
 	
+	app.get('/api/cart/:id', routes.api.carts.getCart);
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
 	app.delete('/api/carts/:id/products', routes.api.carts.removeProductFromCart);
 
@@ -99,10 +100,15 @@ exports = module.exports = function (app) {
 	//Explicitly define which lists we want exposed
 	restful.expose({
 		Meal: {
+			populate: ["options"],
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},
 		MealCategory: {
+			envelop: "results",
+			methods: ["list", "retrieve"]
+		},
+		MealOption: {
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},
@@ -112,7 +118,7 @@ exports = module.exports = function (app) {
 			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
 		Cart: {
-			populate: true,
+			populate: ["products", "options"],
 			envelop: "results",
 			methods: ["list", "retrieve", "create", "update", "remove"]
 		},

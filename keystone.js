@@ -54,7 +54,7 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
-	meals: ['meals', 'meal-categories'],
+	meals: ['meals', 'meal-categories', 'meal-options'],
 	orders: 'orders',
 	carts: 'carts',
 	galleries: 'galleries',

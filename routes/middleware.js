@@ -49,7 +49,7 @@ exports.signin = function signin(req, res) {
 
 	debugger;
 	
-	if (!req.body.username || !req.body.password) return res.json({ success: false });
+	if (!req.body.username || !req.body.password) return res.json({ success: false, error: 'Invalid/Missing credentials' });
 
 	keystone.list('User').model.findOne({ email: req.body.username }).exec(function(err, user) {
 

@@ -7,7 +7,7 @@ var async = require('async'),
 var Meal = keystone.list('Meal');
 
 exports.meals = function (req, res) {
-	Meal.model.find().where('categories').in([req.params.id]).exec(function (err, items) {
+	Meal.model.find().where('categories').in([req.params.id]).populate('options').populate('categories').exec(function (err, items) {
 		if (err) return res.json('error', err);
 
 		res.json({
