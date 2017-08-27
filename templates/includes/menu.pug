@@ -1,0 +1,117 @@
+aside#left-sidebar-nav
+	ul#slide-out.side-nav.fixed.leftside-navigation
+		li.user-details.cyan.darken-2
+			.row
+				.col.col.s4.m4.l4
+					img.circle.responsive-img.valign.profile-image(src='images/avatar.jpg', alt='')
+				.col.col.s8.m8.l8
+					ul#profile-dropdown.dropdown-content
+						li
+							a(href='/profile')
+								i.mdi-action-face-unlock
+								|  Profile
+						li
+							a(href='/settings')
+								i.mdi-action-settings
+								|  Settings
+						li
+							a(href='/help')
+								i.mdi-communication-live-help
+								|  Help
+						li.divider
+						li
+							a(href='/logout')
+								i.mdi-hardware-keyboard-tab
+								|  Logout
+					|
+					a.btn-flat.dropdown-button.waves-effect.waves-light.white-text.profile-btn(href='#', data-activates='profile-dropdown')
+						| #{user.name.first} #{user.name.last}
+						i.mdi-navigation-arrow-drop-down.right
+					if user.isAdmin
+						p.user-roal Administrator
+					else
+						p.user-roal User
+		li.bold
+			a.waves-effect.waves-cyan(href='/')
+				i.mdi-action-dashboard
+				|  Dashboard
+		li.no-padding
+			ul.collapsible.collapsible-accordion
+				li.bold
+					a.waves-effect.waves-cyan(href='/keystone/meal-categories')
+						i.mdi-action-list
+						| Categories
+				li.no-padding
+					ul.collapsible.collapsible-accordion
+						li.bold
+							a.collapsible-header.waves-effect.waves-cyan
+								i.mdi-action-shopping-cart
+								|  Orders
+								span#orders-new.new.badge(hidden='true') 0
+							.collapsible-body
+								ul
+									li
+										a(href='/keystone/orders') Cancelled
+									li
+										a(href='/keystone/orders') Pending
+									li
+										a(href='/keystone/orders') Completed
+									li
+										a(href='/keystone/orders') All
+						li.no-padding
+							ul.collapsible.collapsible-accordion
+								li.bold
+									a.collapsible-header.waves-effect.waves-cyan
+										i.mdi-action-store
+										|  Products
+									.collapsible-body
+										ul
+											li
+												a(href='/keystone/meals') All
+											li
+												a(href='/keystone/meals') Featured
+								li.bold
+									a.waves-effect.waves-cyan(href='/keystone/users')
+										i.mdi-action-account-child
+										|  Users
+								li.bold
+									a.waves-effect.waves-cyan(href='/keystone/news')
+										i.mdi-action-description
+										|  News
+								li.bold
+									a.waves-effect.waves-cyan(href='/keystone/coupons')
+										i.mdi-action-credit-card
+										|  Coupons/Promos
+						li.li-hover
+							.divider
+						li.li-hover
+							p.ultra-small.margin.more-text MORE
+						li
+							a(href='/tax-currency')
+								i.mdi-action-verified-user
+								|  Tax &amp; Currency
+								span.new.badge
+						li
+							a(href='/preferences')
+								i.mdi-action-settings
+								|  Preferences
+						li
+							a(href='/ios-app')
+								i.mdi-hardware-phone-iphone
+								|  iOS App
+						li
+							a(href='/android-app')
+								i.mdi-action-android
+								|  Android App
+						li.li-hover
+							.divider
+						li.li-hover
+							p.ultra-small.margin.more-text Daily Sales
+						li.li-hover
+							.row
+								.col.s12.m12.l12
+									.sample-chart-wrapper
+										#ct2-chart.ct-chart.ct-golden-section
+					a.sidebar-collapse.btn-floating.btn-medium.waves-effect.waves-light.hide-on-large-only.cyan(href='#', data-activates='slide-out')
+						i.mdi-navigation-menu
+

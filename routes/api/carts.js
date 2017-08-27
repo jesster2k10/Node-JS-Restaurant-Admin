@@ -15,26 +15,45 @@ exports.getCart = function (req, res) {
 		path: "products",
 		populate: { path: 'categories' }
 	}).exec(function (err, items) {
-		if (err) return res.json('error', err);
-		
-		res.json({
-			results: items
-		})
-		
+		if (err) {
+			res.json({
+				success: false,
+				error: err
+			});
+		} else {
+			res.json({
+				success: true,
+				results: items
+			})
+
+		}
 	})
 };
 
 exports.addProductToCart = function (req, res) {
 	if (req.body.product !== undefined) {
-		Cart.model.findByIdAndUpdate(req.params.id, { $push: { products: req.body.product } }, { safe: true, upsert: true }).exec(function (err, items) {
-			if (err) return res.json({error: err });
+		
+		if (req.body.option !== undefined) {
+			Cart.model.findByIdAndUpdate(req.params.id, { $push: { products: req.body.product, options: req.body.option } }, { safe: true, upsert: true }).exec(function (err, items) {
+				if (err) return res.json({error: err });
 
-			res.json({
-				results: {
-					products: items
-				}
-			});
-		})
+				res.json({
+					results: {
+						products: items
+					}
+				});
+			})
+		} else {
+			Cart.model.findByIdAndUpdate(req.params.id, { $push: { products: req.body.product } }, { safe: true, upsert: true }).exec(function (err, items) {
+				if (err) return res.json({error: err });
+
+				res.json({
+					results: {
+						products: items
+					}
+				});
+			})
+		}
 	} else {
 		res.json({
 			error: {

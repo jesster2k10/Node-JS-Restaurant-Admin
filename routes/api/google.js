@@ -14,7 +14,7 @@ exports.signIn = function(req, res, done) {
 		return;
 	}
 	
-	console.log(googleUser)
+	console.log(googleUser);
 
 	let profileImage = googleUser.image.url;
 	let google_id = googleUser.id;
@@ -30,7 +30,7 @@ exports.signIn = function(req, res, done) {
 		// if the user is found, then log them in
 		if (user) {
 			let tokenUser = {
-				email: user.email,
+				email: user.email.toLowerCase(),
 				name: {
 					first: user.name.first,
 					last: user.name.last

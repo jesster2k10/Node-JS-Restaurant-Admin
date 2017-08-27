@@ -1,0 +1,82 @@
+extends ../layouts/auth
+block content
+	#login-page.row
+		.col.s12.z-depth-4.card-panel
+				.login-form
+					.row
+						.input-field.col.s12.center
+							img.responsive-img.valign.profile-image-login(src='/images/ic_launcher.png', alt='')
+							p.center.login-form-text Your Restaurant Application
+							
+					#error-row.row
+							p.center(style='color: red;' id='error')
+
+					.row.margin
+						.input-field.col.s12
+							i.mdi-social-person-outline.prefix
+							|
+							input#username(type='text' name='username')
+							|
+							label.center-align(for='username') Username
+					.row.margin
+						.input-field.col.s12
+							i.mdi-action-lock-outline.prefix
+							|
+							input#password(type='password' name='password')
+							|
+							label(for='password') Password
+					.row
+						.input-field.col.s12
+							button.buttonload.btn.waves-effect.waves-light.col.s12(type='submit' name='submit' id='submit')
+								i.fa.fa-spinner.fa-spin(id='spinner')
+								| Loading
+							
+								p(id='buttonText') Loading
+
+					.row
+						.input-field.col.s6.m6.l6
+							p.margin.medium-small
+								a(href='/register') Register Now!
+								
+	script.
+		$(window).load(function() {
+			$('#error-row').hide();
+			$('#spinner').hide();
+			$('#buttonText').show();
+		});
+
+		$(document).ajaxStart(function () {
+			$('#spinner').show();
+			$('#buttonText').hide();
+		});
+
+		$(document).ajaxComplete(function () {
+			$('#spinner').hide();
+			$('#buttonText').show();
+		});
+
+		$(function () {
+			$('#submit').click(function (e) {
+				e.preventDefault();
+				
+				var data = {
+					username: $('#username').val(),
+					password: $('#password').val(),
+				}
+
+				$.ajax({
+					data,
+					type: 'POST',
+					url: '/control_panel/login',
+					success: function (data) {
+						if (data.success == false) {
+							$('#error-row').show();
+							$('#error').text(data.error);
+						} else {
+							window.location.href = '/control_panel'
+						}
+					}
+				});
+			})
+		});
+		

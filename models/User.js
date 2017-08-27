@@ -9,9 +9,9 @@ var User = new keystone.List('User');
 
 User.add({
 	name: { type: Types.Name, required: true, index: true },
-	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
-	password: { type: Types.Password, initial: true, required: false },
-	profileImage: { type: Types.CloudinaryImage, initial: false, required: false },
+	email: { type: Types.Email, initial: true, required: false, unique: true, index: true },
+	password: { type: Types.Password, initial: true, required: false, },
+	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
 }, 'Social Accounts', {
@@ -35,10 +35,11 @@ User.schema.virtual('canAccessKeystone').get(function () {
  * Relationships
  */
 User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
+User.relationship({ ref: 'Order', path: 'orders', refPath: 'user' });
 
 
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin';
+User.defaultColumns = 'name, email, isAdmin, profileImage';
 User.register();

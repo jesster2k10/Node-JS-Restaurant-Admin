@@ -20,6 +20,7 @@
 
 var keystone = require('keystone');
 var middleware = require('./middleware');
+var restaurant = require('../helpers/restaurant');
 var importRoutes = keystone.importer(__dirname);
 
 // Pass your keystone instance to the module
@@ -51,27 +52,30 @@ keystone.set('500', function(err, req, res, next) {
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
-	api: importRoutes('./api')
+	api: importRoutes('./api'),
+	controlPanel: importRoutes('./controlPanel')
 };
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-	// Views
+	//Views
 	app.get('/', function(req, res) {
 		if (req.user) {
-			return res.redirect('/keystone/');
+			return res.redirect('/control_panel');
 		} else {
-			return res.redirect('/keystone/signin');
+			return res.redirect('/control_panel/login');
 		}
 	});
+	
+	app.get('/control_panel', routes.controlPanel.panel);
+	
+	app.get('/control_panel/login', routes.controlPanel.login);
+	app.post('/control_panel/login', routes.controlPanel.login.signin);
 	
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/overview', routes.views.overview);
-
-	app.post('/api/sign_in', middleware.signin);
-	app.post('/api/sign_out', middleware.signout);
 	
 	app.get('/api/cart/:id', routes.api.carts.getCart);
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
@@ -88,14 +92,20 @@ exports = module.exports = function (app) {
 	//
 	app.post('/api/auth/facebook', routes.api.facebook.signIn);
 	app.post('/api/auth/google', routes.api.google.signIn);
+	
+	app.post('/api/auth/session/verify', routes.api.auth.verify);
+	app.post('/api/auth/session/create',  routes.api.auth.signin);
+	app.delete('/api/auth/session/delete', routes.api.auth.signout);
+	
     //
 	// // handle the callback after facebook has authenticated the user
 	// app.get('/api/auth/facebook/callback',
 	// 	passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
 	// 	// Redirect user back to the mobile app using Linking with a custom protocol OAuthLogin
-	// 	(req, res) => res.redirect('restaurant://login?user=' + JSON.stringify(req.user)));
+	// 	(req, res) => res.redirect('restaurant://login?user=' + JSON.stringify(req.user)));p
 	//
-	app.get('/api/meal-categories/:id/meals', routes.api.meals.meals);
+	app.route('/api/meal-categories/:id/meals').get(routes.api.auth.checkAuth, routes.api.meals.meals);
+	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
@@ -113,7 +123,7 @@ exports = module.exports = function (app) {
 			methods: ["list", "retrieve"]
 		},
 		Order: {
-			populate: true,
+			populate: ["products", "transaction"],
 			envelop: "results",
 			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
@@ -128,6 +138,7 @@ exports = module.exports = function (app) {
 		},
 		Post: {
 			envelop: "results",
+			populate: ["categories", "author"],
 			methods: ["list", "retrieve"]
 		},
 		PostCategory: {
@@ -136,12 +147,25 @@ exports = module.exports = function (app) {
 		},
 		User: {
 			envelop: "results",
-			methods: ["list", "retrieve", "create"]
+			show : ["_id", "email", "isAdmin", "name"],
+			methods: ["retrieve", "create", "update", "remove"]
+		},
+		Transaction: {
+			envelop: "results",
+			methods: ["list", "retrieve", "create", "update"]
 		}
 	}).before("update remove create list retrieve", {
-		Order: middleware.checkAuth,
-		Cart: middleware.checkAuth,
-		User: middleware.checkAdminKey
+		Order: routes.api.auth.checkAuth,
+		Cart: routes.api.auth.checkAuth,
+		Transaction: routes.api.auth.checkAuth,
+		Post: routes.api.auth.checkAuth,
+		MealCategory: routes.api.auth.checkAuth
+	}).before({
+		User: {
+			retrieve: routes.api.auth.checkUserMatches,
+			update: routes.api.auth.checkUserMatches,
+			remove: routes.api.auth.checkUserMatches,
+		}
 	}).start();
 
 };

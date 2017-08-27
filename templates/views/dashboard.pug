@@ -1,0 +1,65 @@
+extends ../layouts/dashboard
+block content
+	h1 Welcome, #{user.name.first} #{user.name.last}
+	p Here is the latest information for you restaurant #}. You have a total of
+		strong  #} orders
+		|  and a total of
+		strong  #
+		|  reservations made to date.
+
+	#card-stats.seaction
+		h4.header Stats Cards
+		p  Information about your resteraunt at a glance
+		.row
+			.col.s12.m6.l3
+				.card
+					.card-content.green.white-text
+						p.card-stats-title
+							i.mdi-social-group-add
+							|  New Reservations
+						h4.card-stats-number 566
+						p.card-stats-compare
+							i.mdi-hardware-keyboard-arrow-up
+							|  15%
+							span.green-text.text-lighten-5 from yesterday
+					.card-action.green.darken-2
+						#clients-bar.center-align
+							canvas(style='display: inline-block; width: 227px; height: 25px; vertical-align: top;', width='227', height='25')
+			.col.s12.m6.l3
+				.card
+					.card-content.purple.white-text
+						p.card-stats-title
+							i.mdi-editor-attach-money
+							| Total Sales
+						h4.card-stats-number #{currency} #{totalSales}
+					.card-action.purple.darken-2
+						#sales-compositebar.center-align
+							canvas(style='display: inline-block; width: 214px; height: 25px; vertical-align: top;', width='214', height='25')
+			.col.s12.m6.l3
+				.card
+					.card-content.blue-grey.white-text
+						p.card-stats-title
+							i.mdi-action-trending-up
+							|  Today Profit
+						h4.card-stats-number $806.52
+						p.card-stats-compare
+							i.mdi-hardware-keyboard-arrow-up
+							|  80%
+							span.blue-grey-text.text-lighten-5 from yesterday
+					.card-action.blue-grey.darken-2
+						#profit-tristate.center-align
+							canvas(style='display: inline-block; width: 227px; height: 25px; vertical-align: top;', width='227', height='25')
+			.col.s12.m6.l3
+				.card
+					.card-content.deep-purple.white-text
+						p.card-stats-title
+							i.mdi-editor-insert-drive-file
+							|  New Invoice
+						h4.card-stats-number 1806
+						p.card-stats-compare
+							i.mdi-hardware-keyboard-arrow-down
+							|  3%
+							span.deep-purple-text.text-lighten-5 from last month
+					.card-action.deep-purple.darken-2
+						#invoice-line.center-align
+							canvas(style='display: inline-block; width: 245px; height: 25px; vertical-align: top;', width='245', height='25')
