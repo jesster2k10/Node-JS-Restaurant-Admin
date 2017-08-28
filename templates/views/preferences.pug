@@ -1,0 +1,37 @@
+extends ../layouts/dashboard
+
+block content
+	h4 API Secrets
+	p Generate a secret and use it to connect to your iOS application. Ensure these secrets are safe as anybody with access will be able to modify your restaurant.
+	|  For security reasons, any tokens will be hidden after they are generated so take them down in a safe place.
+	|  You can regenerate a token at any given time.
+	|  All tokens have a set amount of permissions granted. You can set this when you create the token but it can not be changed unless you regenerate a token.
+
+	br
+	br
+	br
+
+	a#generate-token.waves-effect.waves-ligt.btn-large(href='/control_panel/preferences-generate')
+		| Generate a secret
+
+	br
+	br
+	br
+
+	script.
+		function copyToClipboard() {
+			new Clipboard('.btn');
+			Materialize.toast('Copied to clipboard', 10000);
+		}
+
+	.row
+		.input-field.col.s9
+			if token
+				input#token.validate(disabled='', value=token, type='text')
+			else
+				input#token.validate(disabled='', value='Generate a secret first', type='text')
+			|
+			label.active(for='token') Your API Secret token
+		.input-field.col.s1
+			a#copy-token.waves-effect.waves-ligt.btn(onclick="copyToClipboard()" data-clipboard-target="#token")
+				| Copy

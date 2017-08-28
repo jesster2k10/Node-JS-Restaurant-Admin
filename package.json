@@ -9,7 +9,7 @@
     "jsonwebtoken": "^7.4.1",
     "keystone": "^4.0.0-beta.5",
     "keystone-email": "1.0.5",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.11.7",
     "node-sass": "4.5.0",
     "node-sass-middleware": "^0.11.0",

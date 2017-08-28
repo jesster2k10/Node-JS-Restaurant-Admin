@@ -25,6 +25,7 @@ var importRoutes = keystone.importer(__dirname);
 
 // Pass your keystone instance to the module
 var restful = require('restful-keystone')(keystone);
+var jwt = require('jsonwebtoken');
 
 // import tokens
 //var passport = require('passport');
@@ -68,10 +69,19 @@ exports = module.exports = function (app) {
 	});
 	
 	app.get('/control_panel', routes.controlPanel.panel);
-	
 	app.get('/control_panel/login', routes.controlPanel.login);
-	app.post('/control_panel/login', routes.controlPanel.login.signin);
 	
+	app.post('/control_panel/login', routes.controlPanel.login.signin);
+	app.post('/control_panel/restaurant/update', middleware.onlyNotEmpty, routes.controlPanel.preferences.update)
+	app.get('/control_panel/preferences', routes.controlPanel.preferences.view);
+	app.get('/control_panel/restaurant-info', routes.controlPanel.info);
+	app.get('/control_panel/preferences-generate', function (req, res) {
+		const token = jwt.sign({ user: req.user }, process.env.TOKEN_SECRET, {
+			expiresIn: '2629743m' // 5 years
+		});
+		res.render('preferences', { ios: true, name: 'iOS App Preferences', user: req.user, token: token })
+	});
+
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
@@ -153,13 +163,18 @@ exports = module.exports = function (app) {
 		Transaction: {
 			envelop: "results",
 			methods: ["list", "retrieve", "create", "update"]
+		},
+		Photo: {
+			envelop: "results",
+			methods: ["list", "retrieve"]
 		}
 	}).before("update remove create list retrieve", {
 		Order: routes.api.auth.checkAuth,
 		Cart: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
-		MealCategory: routes.api.auth.checkAuth
+		MealCategory: routes.api.auth.checkAuth,
+		Photo: routes.api.auth.checkAuth
 	}).before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,

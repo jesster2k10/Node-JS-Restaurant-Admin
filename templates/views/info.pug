@@ -1,0 +1,61 @@
+extends ../layouts/dashboard
+block content
+	h4 Restaurant Information
+	
+	br
+
+	form.col.s12(class='formValidate' id='formValidate' method='post' action='/control_panel/restaurant/update', novalidate='novalidate')
+		.row
+			.input-field.col.s12
+				input(placeholder='Restaurant Name' id='restaurantName' name='restaurantName' type='text' class='validate' required='' data-error='.errorTxt1')
+				label(for='restaurantName' class='active') Restaurant Name
+
+		.row
+			br
+			
+			.col.s12
+				label Restaurant About Us
+				textarea(type='date' id='validFromDate' name='productDescription' required='' data-error='.errorTxt3' class='materialize-textarea' length='1500')
+		.row
+			br
+			#input-select.row
+				.col.s6
+					.input-field.col.s16
+						label Restaurant Logo
+						|
+						input(type='file' name='file' style='margin-top:20px;' accept='image/*')
+
+		.row
+			br
+			.input-field.col.s4
+				input(placeholder='Instagram' id='instagram' name='instagram' type='url' class='validate' required='' data-error='.errorTxt6')
+				label(for='instagram' class='active') Instagram
+				
+			.input-field.col.s4
+				input(placeholder='Facebook' id='facebook' name='facebook' type='text' class='validate' required='' data-error='.errorTxt6')
+				label(for='facebook' class='active') Facebook
+				
+			.input-field.col.s4
+				input(placeholder='Twitter' id='twitter' name='twitter' type='text' class='validate' required='' data-error='.errorTxt6')
+				label(for='twitter' class='active') Twitter
+				
+		.row
+			br
+			.input-field.col.s6
+				input(placeholder='Youtube' id='youtube' name='youtube' type='url' class='validate' required='' data-error='.errorTxt6')
+				label(for='youtube' class='active') YouTube
+
+			.input-field.col.s6
+				input(placeholder='Google+' id='google_plus' name='google_plus' type='text' class='validate' required='' data-error='.errorTxt6')
+				label(for='google_plus' class='active') Google+
+				
+
+		.row
+			br
+			.input-field.col.s12
+				input(placeholder='Website' id='website' name='website' type='text' class='validate' required='' length='5' data-error='.errorTxt6')
+				label(for='website' class='active') Website
+				
+		.row
+			.input-field.col.s12
+				button.btn Submit

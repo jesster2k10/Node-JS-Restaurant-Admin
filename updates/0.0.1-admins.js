@@ -11,6 +11,9 @@ exports.create = {
 	User: [
 		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'jesster2k10@gmail.com', 'password': 'admin', 'isAdmin': true },
 	],
+	RestaurantInformation: [
+		{ key: 2, name: 'Your Restaurant App', website: 'https://flatboxstudio.com'  }
+	]
 };
 
 /*
