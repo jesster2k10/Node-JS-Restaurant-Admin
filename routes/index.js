@@ -170,7 +170,6 @@ exports = module.exports = function (app) {
 		}
 	}).before("update remove create list retrieve", {
 		Order: routes.api.auth.checkAuth,
-		Cart: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
 		MealCategory: routes.api.auth.checkAuth,
