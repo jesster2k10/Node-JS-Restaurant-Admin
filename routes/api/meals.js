@@ -28,17 +28,8 @@ exports.getReviews = function (req, res) {
 			res.json({ success: false, message: err.message || "Failed to fetch reviews for meal" });
 		}
 		
-		let _items;
-		
-		if (items) {
-			_items = items.map(function (item) {
-				delete item.user.password;
-				return item
-			})
-		}
-		
 		res.json({
-			results: _items || items,
+			results: items,
 		})
 	})
 };
