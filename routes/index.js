@@ -132,6 +132,11 @@ exports = module.exports = function (app) {
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},
+		MealReview: {
+			envelop: "results",
+			methods: ["list", "retrieve", "create", "remove"],
+			populate: ["user", "meal"],
+		},
 		Order: {
 			populate: ["products", "transaction"],
 			envelop: "results",
@@ -167,19 +172,20 @@ exports = module.exports = function (app) {
 		Photo: {
 			envelop: "results",
 			methods: ["list", "retrieve"]
-		}
+		},
 	}).before("update remove create list retrieve", {
 		Order: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
 		MealCategory: routes.api.auth.checkAuth,
+		MealReview: routes.api.auth.checkAuth,
 		Photo: routes.api.auth.checkAuth
 	}).before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,
 			update: routes.api.auth.checkUserMatches,
 			remove: routes.api.auth.checkUserMatches,
-		}
+		},
 	}).start();
 
 };

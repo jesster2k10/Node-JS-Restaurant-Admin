@@ -119,6 +119,7 @@ function empty( val ) {
 	return false;
 }
 
+Meal.relationship({ ref: 'MealReview', path: 'mealReviews', refPath: 'meal' });
 Meal.defaultColumns = 'name, featuredImage|20%, author|20%, publishedDate|20%';
 
 Meal.schema.pre('validate', function(next) {
