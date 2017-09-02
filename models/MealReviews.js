@@ -10,11 +10,16 @@ var keystone = require('keystone'),
  */
 
 let MealReview = new keystone.List('MealReview', {
-	autokey: { from: 'name', path: 'key', unique: true },
+	autokey: { from: 'title', path: 'key', unique: true },
 	noedit: true
 });
 
 MealReview.add({
+	title: {
+		type: String,
+		required: false,
+		initial: false,
+	},
 	review: {
 		type: String,
 		required: true,
@@ -36,20 +41,17 @@ MealReview.add({
 		ref: 'Meal',
 		many: false,
 		required: true,
-		initial: false,
+		initial: true,
 	},
 	user: {
 		type: Types.Relationship,
 		ref: 'User',
 		many: false,
-		required: false,
-		initial: false
+		required: true,
+		initial: true
 	}
 });
 
-MealReview.relationship({ ref: 'User', path: 'users', refPath: 'user' });
-MealReview.relationship({ ref: 'Meal', path: 'meals', refPath: 'meal' });
-
-MealReview.defaultColumns = 'review, rating, created, user';
+MealReview.defaultColumns = 'title, review, rating, created, user';
 
 MealReview.register();

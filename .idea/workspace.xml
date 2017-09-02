@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c2529963-6035-4166-89bb-5d7e97433808" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/MealReviews.js" afterPath="$PROJECT_DIR$/models/MealReviews.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api/meals.js" afterPath="$PROJECT_DIR$/routes/api/meals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="meals.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api/meals.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+            <state relative-caret-position="189">
+              <caret line="25" column="115" lean-forward="false" selection-start-line="25" selection-start-column="115" selection-end-line="25" selection-end-column="115" />
               <folding />
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="MealReviews.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/MealReviews.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="49" column="73" lean-forward="false" selection-start-line="49" selection-start-column="73" selection-end-line="50" selection-end-column="73" />
+            <state relative-caret-position="279">
+              <caret line="52" column="3" lean-forward="false" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
               <folding>
                 <element signature="e#0#52#0" expanded="false" />
               </folding>
@@ -118,9 +118,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/models/User.js" />
-        <option value="$PROJECT_DIR$/models/MealReviews.js" />
         <option value="$PROJECT_DIR$/models/Meal.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/models/MealReviews.js" />
         <option value="$PROJECT_DIR$/routes/api/meals.js" />
       </list>
     </option>
@@ -385,12 +385,12 @@
       <workItem from="1504183645732" duration="527000" />
       <workItem from="1504288748714" duration="218000" />
       <workItem from="1504288982338" duration="1117000" />
-      <workItem from="1504380353847" duration="1700000" />
+      <workItem from="1504380353847" duration="2744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153819000" />
+    <option name="totallyTimeSpent" value="154863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="34" y="43" width="1383" height="966" extended-state="0" />
@@ -776,8 +776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/MealReviews.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="49" column="73" lean-forward="false" selection-start-line="49" selection-start-column="73" selection-end-line="50" selection-end-column="73" />
+        <state relative-caret-position="279">
+          <caret line="52" column="3" lean-forward="false" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
           <folding>
             <element signature="e#0#52#0" expanded="false" />
           </folding>
@@ -786,8 +786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/meals.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        <state relative-caret-position="189">
+          <caret line="25" column="115" lean-forward="false" selection-start-line="25" selection-start-column="115" selection-end-line="25" selection-end-column="115" />
           <folding />
         </state>
       </provider>
