@@ -105,10 +105,9 @@ exports.addProductToCart = function (req, res) {
 };
 
 exports.removeProductFromCart = function (req, res) {
-	let data = JSON.parse(req.body);
-	console.log('\nn\n\n\n\n\n\n\n');
-	console.log(data)
-	if (data.product) {
+	console.log('\n\n\n\n');
+	console.log(req.body);
+	if (req.body.product) {
 		Cart.model.update({ _id: req.params.id }, { $pullAll: {products: [req.body.product] } }).exec(function (err, items) {
 			if (err) return res.json({error: err });
 
