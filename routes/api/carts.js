@@ -30,6 +30,47 @@ exports.getCart = function (req, res) {
 	})
 };
 
+exports.clearCart = function (req, res) {
+	Cart.model.findOne({ _id: req.params.id }).populate({
+		path: "products",
+		populate: { path: "options"}
+	}).populate({
+		path: "products",
+		populate: { path: 'categories' }
+	}).exec(function (err, cart) {
+		if (err) {
+			res.json({
+				success: false,
+				error: err
+			});
+		} else {
+			if (cart) {
+				cart.products = [];
+				cart.options = [];
+				cart.save(function (err) {
+					if (err) {
+						res.json({
+							success: false,
+							error: err
+						});
+					} else {
+						res.json({
+							success: true,
+							error: null
+						});
+					}
+				})
+			} else {
+				res.json({
+					success: false,
+					error: 'No cart was found.'
+				});
+			}
+
+		}
+	})	
+};
+
 exports.addProductToCart = function (req, res) {
 	if (req.body.product !== undefined) {
 		
