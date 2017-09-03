@@ -118,6 +118,7 @@ exports = module.exports = function (app) {
 	//
 	app.route('/api/meal-categories/:id/meals').get(routes.api.auth.checkAuth, routes.api.meals.meals);
 	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);
+	app.route('/api/meal-favourites/user/:id').get(routes.api.auth.checkAuth, routes.api.meals.getFavouritesForUser);
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
@@ -175,13 +176,18 @@ exports = module.exports = function (app) {
 			envelop: "results",
 			methods: ["list", "retrieve"]
 		},
+		MealFavourite: {
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'remove']
+		}
 	}).before("update remove create list retrieve", {
 		Order: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
 		MealCategory: routes.api.auth.checkAuth,
 		MealReview: routes.api.auth.checkAuth,
-		Photo: routes.api.auth.checkAuth
+		Photo: routes.api.auth.checkAuth,
+		MealFavourite: routes.api.checkAuth
 	}).before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,

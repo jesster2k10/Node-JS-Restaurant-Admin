@@ -4,8 +4,9 @@
 var async = require('async'),
 	keystone = require('keystone');
 
-var Meal = keystone.list('Meal');
-var MealReviews = keystone.list('MealReview');
+let Meal = keystone.list('Meal');
+let MealReviews = keystone.list('MealReview');
+let MealFavourite = keystone.list('MealFavourite');
 
 exports.meals = function (req, res) {
 	Meal.model.find().where('categories').in([req.params.id]).populate('options').populate('categories').exec(function (err, items) {
@@ -32,4 +33,18 @@ exports.getReviews = function (req, res) {
 			results: items,
 		})
 	})
+};
+
+exports.getFavouritesForUser = function (req, res) {
+	MealFavourite.model.find().where('user', req.params.id).populate('meal').populate('user', '-password').exec(function (err, items) {
+		if (err) return res.json({
+			error: err,
+			success: false,
+		});
+
+		res.json({
+			success: true,
+			results: items
+		});
+	});
 };
