@@ -53,6 +53,7 @@ exports.checkAuth = function checkAuth(req, res, next) {
 	// // you could check user permissions here too
 	// if (req.user) return next();
 	// return res.status(403).json({ 'error': 'no access' });
+	console.log(req.body)
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	// decode token
