@@ -64,7 +64,7 @@ exports.addProductToCart = function (req, res) {
 };
 
 exports.removeProductFromCart = function (req, res) {
-	if (req.body.product !== undefined) {
+	if (req.body.product) {
 		Cart.model.update({ _id: req.params.id }, { $pullAll: {products: [req.body.product] } }).exec(function (err, items) {
 			if (err) return res.json({error: err });
 

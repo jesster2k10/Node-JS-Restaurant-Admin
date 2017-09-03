@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c2529963-6035-4166-89bb-5d7e97433808" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api/auth.js" afterPath="$PROJECT_DIR$/routes/api/auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api/carts.js" afterPath="$PROJECT_DIR$/routes/api/carts.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +46,19 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-681">
-              <caret line="116" column="92" lean-forward="false" selection-start-line="116" selection-start-column="92" selection-end-line="116" selection-end-column="92" />
-              <folding>
-                <marker date="1504425385000" expanded="true" signature="1938:6666" ph="{...}" />
-              </folding>
+            <state relative-caret-position="84">
+              <caret line="88" column="4" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="carts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/api/carts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="180" column="68" lean-forward="false" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="68" />
+            <state relative-caret-position="810">
+              <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -92,16 +102,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="142" lean-forward="false" selection-start-line="12" selection-start-column="142" selection-end-line="12" selection-end-column="142" />
               <folding />
             </state>
           </provider>
@@ -166,7 +166,6 @@
         <option value="$PROJECT_DIR$/models/Cart.js" />
         <option value="$PROJECT_DIR$/node_modules/keystone/admin/client/App/screens/Home/index.js" />
         <option value="$PROJECT_DIR$/node_modules/keystone/admin/client/App/elemental/Modal/dialog.js" />
-        <option value="$PROJECT_DIR$/routes/api/carts.js" />
         <option value="$PROJECT_DIR$/routes/views/login.js" />
         <option value="$PROJECT_DIR$/templates/layouts/foot.pug" />
         <option value="$PROJECT_DIR$/templates/includes/foot.pug" />
@@ -183,7 +182,6 @@
         <option value="$PROJECT_DIR$/routes/api/google.js" />
         <option value="$PROJECT_DIR$/routes/api/checkout.js" />
         <option value="$PROJECT_DIR$/models/Post.js" />
-        <option value="$PROJECT_DIR$/routes/api/auth.js" />
         <option value="$PROJECT_DIR$/routes/api/facebook.js" />
         <option value="$PROJECT_DIR$/routes/controlPanel/login.js" />
         <option value="$PROJECT_DIR$/helpers/restaurant.js" />
@@ -205,6 +203,8 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/api/meals.js" />
         <option value="$PROJECT_DIR$/models/MealFavourite.js" />
+        <option value="$PROJECT_DIR$/routes/api/auth.js" />
+        <option value="$PROJECT_DIR$/routes/api/carts.js" />
       </list>
     </option>
   </component>
@@ -220,8 +220,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="158" />
-    <option name="y" value="58" />
+    <option name="x" value="209" />
+    <option name="y" value="30" />
     <option name="width" value="1383" />
     <option name="height" value="966" />
   </component>
@@ -469,15 +469,15 @@
       <workItem from="1504288748714" duration="218000" />
       <workItem from="1504288982338" duration="1117000" />
       <workItem from="1504380353847" duration="3259000" />
-      <workItem from="1504392079293" duration="4978000" />
+      <workItem from="1504392079293" duration="7239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160356000" />
+    <option name="totallyTimeSpent" value="162617000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="158" y="58" width="1383" height="966" extended-state="0" />
+    <frame x="209" y="30" width="1383" height="966" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -683,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/carts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/RestaurantInformation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -856,16 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-681">
-          <caret line="116" column="92" lean-forward="false" selection-start-line="116" selection-start-column="92" selection-end-line="116" selection-end-column="92" />
-          <folding>
-            <marker date="1504425385000" expanded="true" signature="1938:6666" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/MealReviews.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-163">
@@ -873,6 +856,14 @@
           <folding>
             <element signature="e#0#52#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" column="61" lean-forward="false" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -886,10 +877,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/auth.js">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="180" column="68" lean-forward="false" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="68" />
+        <state relative-caret-position="84">
+          <caret line="88" column="4" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/carts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
           <folding />
         </state>
       </provider>
