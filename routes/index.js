@@ -90,7 +90,7 @@ exports = module.exports = function (app) {
 	app.get('/api/cart/:id', routes.api.carts.getCart);
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
 	app.delete('/api/carts/:id/products', routes.api.carts.removeProductFromCart);
-	app.delete('/api/carts/:id/products/all', routes.api.carts.clearCart);
+	app.route('/api/carts/:id/products/all').get(routes.api.auth.checkAuth, routes.api.carts.clearCart);
 	
 	app.get('/api/meal-reviews/:id/', routes.api.meals.getReviews);
 

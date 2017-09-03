@@ -41,7 +41,7 @@ exports.clearCart = function (req, res) {
 		if (err) {
 			res.json({
 				success: false,
-				error: err
+				error: err.message
 			});
 		} else {
 			if (cart) {
@@ -51,7 +51,7 @@ exports.clearCart = function (req, res) {
 					if (err) {
 						res.json({
 							success: false,
-							error: err
+							error: err.message
 						});
 					} else {
 						res.json({
@@ -105,6 +105,8 @@ exports.addProductToCart = function (req, res) {
 };
 
 exports.removeProductFromCart = function (req, res) {
+	console.log('\n\n\n\n');
+	console.log(req.body);
 	if (req.body.product) {
 		Cart.model.update({ _id: req.params.id }, { $pullAll: {products: [req.body.product] } }).exec(function (err, items) {
 			if (err) return res.json({error: err });
@@ -122,5 +124,5 @@ exports.removeProductFromCart = function (req, res) {
 			}
 		})
 	}
-}
+};
 
