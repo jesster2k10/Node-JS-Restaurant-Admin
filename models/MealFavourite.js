@@ -17,8 +17,9 @@ let MealFavourite = new keystone.List('MealFavourite', {
 MealFavourite.add({
 	created: {
 		type: Types.Datetime,
-		required: true,
+		required: false,
 		initial: true,
+		default: Date.now()
 	},
 	meal: {
 		type: Types.Relationship,
