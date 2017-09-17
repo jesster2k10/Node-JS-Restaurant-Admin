@@ -11,7 +11,7 @@
     "dotenv": "4.0.0",
     "express-jwt-blacklist": "^1.1.0",
     "jsonwebtoken": "^7.4.3",
-    "keystone": "^4.0.0-beta.5",
+    "keystone": "git+https://github.com/keystonejs/keystone.git",
     "keystone-email": "1.0.5",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.11",
