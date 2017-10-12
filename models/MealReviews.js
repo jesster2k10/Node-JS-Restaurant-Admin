@@ -33,21 +33,21 @@ MealReview.add({
 	},
 	created: {
 		type: Types.Datetime,
-		required: true,
+		required: false,
 		initial: true,
 	},
 	meal: {
 		type: Types.Relationship,
 		ref: 'Meal',
 		many: false,
-		required: true,
+		required: false,
 		initial: true,
 	},
 	user: {
 		type: Types.Relationship,
 		ref: 'User',
 		many: false,
-		required: true,
+		required: false,
 		initial: true
 	}
 });
