@@ -23,6 +23,10 @@ User.add({
 		ID: { type: String, required: false },
 		token: { type: String, required: false }
 	}
+}, 'Other', {
+	stripe: {
+		customerID: { type: String, required: false },
+	}
 });
 
 // Provide access to Keystone

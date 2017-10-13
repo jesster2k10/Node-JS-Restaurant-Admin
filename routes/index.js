@@ -120,6 +120,15 @@ exports = module.exports = function (app) {
 	app.route('/api/meal-categories/:id/meals').get(routes.api.auth.checkAuth, routes.api.meals.meals);
 	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);
 	app.route('/api/meal-favourites/user/:id').get(routes.api.auth.checkAuth, routes.api.meals.getFavouritesForUser);
+	
+	app.route('/api/payments/').post(routes.api.auth.checkAuth, routes.api.payments.makePayment);
+	
+	app.route('/api/payments/customer/')
+		.get(routes.api.auth.checkAuth, routes.api.payments.getCustomer)
+		.post(routes.api.auth.checkAuth, routes.api.payments.createCustomer);
+	
+	app.route('/api/payments/customer/charge').post(routes.api.auth.checkAuth, routes.api.payments.chargeCustomer);
+	app.route('/api/payments/customer/cards').get(routes.api.auth.checkAuth, routes.api.payments.getPaymentCards);
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
