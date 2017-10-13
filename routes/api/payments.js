@@ -51,13 +51,13 @@ exports.getCustomer = function (req, res) {
 };
 
 exports.makePayment = function (req, res) {
-	const { token, amount, currency } = req.body;
+	const { stripeToken, amount, currency } = req.body;
 	
-	if (!token || !amount || !currency) {
+	if (!stripeToken || !amount || !currency) {
 		return res.json({ success: false, error: 'Empty/Missing fields' });
 	}
 	
-	payments.makePayment(token, amount, currency)
+	payments.makePayment(stripeToken, amount, currency)
 		.then(charge => {
 			res.json({ success: true, charge, error: null });
 		})

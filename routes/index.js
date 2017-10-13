@@ -127,7 +127,7 @@ exports = module.exports = function (app) {
 		.get(routes.api.auth.checkAuth, routes.api.payments.getCustomer)
 		.post(routes.api.auth.checkAuth, routes.api.payments.createCustomer);
 	
-	app.route('/api/payments/customer/charge').post(routes.api.auth.checkAuth, routes.api.payments.chargeCustomer);
+	// app.route('/api/payments/customer/charge').post(routes.api.auth.checkAuth, routes.api.payments.chargeCustomer);
 	app.route('/api/payments/customer/cards').get(routes.api.auth.checkAuth, routes.api.payments.getPaymentCards);
 
 	//Explicitly define which lists we want exposed
