@@ -1,7 +1,7 @@
 /**
  * Created by jesseonolememen on 13/10/2017.
  */
-let stripe = require("stripe")("sk_test_5BOkjsmNHCz1CV7l3kWh1Blh");
+let stripe = require("stripe")("sk_test_uJvst0Dfrs2X4KOJSkbvXqjq");
 
 exports.createCustomer = (email, source) => {
 	return new Promise((resolve, reject) => {
