@@ -53,6 +53,8 @@ exports.getCustomer = function (req, res) {
 exports.makePayment = function (req, res) {
 	const { stripeToken, amount, currency } = req.body;
 	
+	console.log(req.body);
+	
 	if (!stripeToken || !amount || !currency) {
 		return res.json({ success: false, error: 'Empty/Missing fields' });
 	}
