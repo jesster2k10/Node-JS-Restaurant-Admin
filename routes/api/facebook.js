@@ -42,7 +42,7 @@ exports.signIn = function(req, res, done) {
 	let email = fbUser.email;
 	let profileImage = `http://graph.facebook.com/${facebook_id}/picture`;
 
-	keystone.list('User').model.findOne({ 'facebook.ID': facebook_id }).exec(function(err, user) {
+	keystone.list('User').model.findOne({ 'email': email }).exec(function(err, user) {
 			if (err) {
 				return done( { success: false, error: err });
 			}

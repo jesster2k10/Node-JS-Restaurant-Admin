@@ -22,7 +22,7 @@ exports.signIn = function(req, res, done) {
 	let lastName = googleUser.name.familyName;
 	let email = googleUser.emails[0].value;
 
-	keystone.list('User').model.findOne({  'email': email }).exec(function(err, user) {
+	keystone.list('User').model.findOne({ 'email': email }).exec(function(err, user) {
 		if (err) {
 			return done( { success: false, error: err });
 		}
