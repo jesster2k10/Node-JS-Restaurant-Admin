@@ -132,6 +132,11 @@ exports = module.exports = function (app) {
 
 	//Explicitly define which lists we want exposed
 	restful.expose({
+		Address: {
+			populate: ["user"],
+			envelop: "results",
+			methods: ["retrieve", "create", "update", "remove"]
+		},
 		Meal: {
 			populate: ["options"],
 			envelop: "results",
@@ -175,6 +180,7 @@ exports = module.exports = function (app) {
 		},
 		User: {
 			envelop: "results",
+			populate: ["addresses"],
 			show : ["_id", "email", "isAdmin", "name"],
 			methods: ["retrieve", "create", "update", "remove"]
 		},
@@ -205,7 +211,8 @@ exports = module.exports = function (app) {
 		MealCategory: routes.api.auth.checkAuth,
 		MealReview: routes.api.auth.checkAuth,
 		Photo: routes.api.auth.checkAuth,
-		MealFavourite: routes.api.checkAuth
+		MealFavourite: routes.api.checkAuth,
+		Address: routes.api.checkAuth
 	}).before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,
