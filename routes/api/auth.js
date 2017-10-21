@@ -166,6 +166,8 @@ exports.signin = function signin(req, res) {
 				message: (err && err.message ? err.message : false) || 'No account was found with the details you entered.'
 			});
 		}
+		
+		console.log(user)
 
 		keystone.session.signin({ email: user.email, password: req.body.password }, req, res, function(user) {
 			let tokenUser = {
@@ -176,7 +178,7 @@ exports.signin = function signin(req, res) {
 				if (key != '_id') {
 					tokenUser[key] = user[key]
 				}
-			})
+			});
 			
 			var token = jwt.sign(tokenUser, process.env.TOKEN_SECRET, {
 				expiresIn: '7d' // expires in 7 days
@@ -191,9 +193,10 @@ exports.signin = function signin(req, res) {
 			});
 
 		}, function(err) {
+			console.log(err)
 
 			return res.json({
-				success: true,
+				success: false,
 				session: false,
 				token: null,
 				message: (err && err.message ? err.message : false) || 'Sorry, there was an issue signing you in, please try again.'
