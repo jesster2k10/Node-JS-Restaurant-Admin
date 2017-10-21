@@ -10,7 +10,7 @@ var User = new keystone.List('User');
 User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
-	password: { type: Types.Password, initial: true, required: true, hidden: true, select: false },
+	password: { type: Types.Password, initial: true, required: true, hidden: true },
 	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
 	addresses: { type: Types.Relationship, ref: 'Address', required: false, many: true, initial: false, }
 }, 'Permissions', {
