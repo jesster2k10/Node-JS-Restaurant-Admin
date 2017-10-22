@@ -47,7 +47,10 @@ keystone.set('500', function(err, req, res, next) {
 		message = err.message;
 		err = err.stack;
 	}
-	res.err(err, title, message);
+	res.status(400).json({
+		success: false,
+		error: message
+	})
 });
 
 // Import Route Controllers
@@ -120,6 +123,8 @@ exports = module.exports = function (app) {
 	app.route('/api/meal-categories/:id/meals').get(routes.api.auth.checkAuth, routes.api.meals.meals);
 	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);
 	app.route('/api/meal-favourites/user/:id').get(routes.api.auth.checkAuth, routes.api.meals.getFavouritesForUser);
+	
+	app.route('/api/addresses/user/:id').get(routes.api.auth.checkUserMatches, routes.api.auth.getAddress);
 	
 	app.route('/api/payments/').post(routes.api.auth.checkAuth, routes.api.payments.makePayment);
 	

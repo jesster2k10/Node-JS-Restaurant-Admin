@@ -5,6 +5,8 @@ var jwt = require('jsonwebtoken');
 var keystone = require('keystone');
 var client = require('redis').createClient(process.env.REDIS_URL);
 
+let Address = keystone.list('Address');
+
 const BLACKLISTED_TOKENS_KEY = 'blacklisted_tokens';
 
 // middleware
@@ -225,3 +227,22 @@ exports.signout = function signout(req, res) {
 	});
 };
 
+exports.getAddress = function getAddresses(req, res) {
+	Address.model.find().where('user', req.params.id).exec(function (err, items) {
+		if (err) return res.json({
+			error: err,
+			success: false,
+		});
+		
+		res.json({
+			success: true,
+			results: items.map(item => {
+				return {
+					_id: item._id,
+					address: item.address,
+					name: item.name,
+				}
+			})
+		});
+	});
+};
