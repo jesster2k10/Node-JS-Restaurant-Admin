@@ -7,6 +7,20 @@ var async = require('async'),
 
 let User = keystone.list('User');
 
+exports.Braintree = {
+	makePayment: function (req, res) {
+		const { nonce, amount } = req.body;
+		
+		if (!nonce || !amount) {
+			return res.status(401).json({ success: false, error: { code: 401, message: 'Bad request' }});
+		}
+		
+		payments.Braintree.makePayment(nonce, amount)
+			.then(( result ) => res.status(200).json({ success: true, error: null, result: result }))
+			.catch(( { code, message } ) => res.status(500).json({ success: false, error: { code, message }}))
+	}
+};
+
 exports.createCustomer = function (req, res) {
 	const { email, source, userId } = req.body;
 	
