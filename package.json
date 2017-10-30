@@ -15,7 +15,7 @@
     "keystone": "git+https://github.com/keystonejs/keystone.git",
     "keystone-email": "1.0.5",
     "lodash": "^4.17.4",
-    "mongoose": "^4.11.11",
+    "mongoose": "^4.12.5",
     "node-sass": "4.5.0",
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.3.2",
@@ -27,11 +27,11 @@
     "res-error": "^0.3.1",
     "restful-keystone": "^0.3.0",
     "serialize-error": "^2.1.0",
-    "stripe": "^5.1.1"
+    "stripe": "^5.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "eslint": "3.15.0",
     "eslint-config-keystone": "3.0.0",
     "eslint-plugin-react": "^5.1.1",
