@@ -28,7 +28,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'mongo': process.env.MONGODB_URI || "mongodb://localhost:27017/"
+	'mongo': process.env.MONGODB_URI
 });
 
 keystone.pre('routes', passport.initialize());
