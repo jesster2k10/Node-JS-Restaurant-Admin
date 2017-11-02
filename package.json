@@ -2,20 +2,15 @@
   "name": "your-restaurant",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": "8.2.1",
-    "npm": "5.2.0"
-  },
   "dependencies": {
     "async": "2.1.4",
     "braintree": "^2.3.0",
     "dotenv": "4.0.0",
     "express-jwt-blacklist": "^1.1.0",
     "jsonwebtoken": "^7.4.3",
-    "keystone": "^4.0.0-beta.4",
+    "keystone": "^4.0.0-beta.5",
     "keystone-email": "1.0.5",
     "lodash": "^4.17.4",
-    "mongoose": "^4.12.6",
     "node-sass": "4.5.0",
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.3.2",
