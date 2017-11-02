@@ -4,8 +4,6 @@
 var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
-const mongoose = require('mongoose');
-
 /**
  * Meal Model
  * ==========
@@ -89,7 +87,7 @@ function empty( val ) {
 	// null      true
 	// undefined true
 	// ""        true, empty string
-	// ''        true, empty string
+	// ''        true, empty stringƒ
 	// 0         false, number
 	// true      false, boolean
 	// false     false, boolean
