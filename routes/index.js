@@ -21,6 +21,7 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var restaurant = require('../helpers/restaurant');
+var info = require('../helpers/information');
 var importRoutes = keystone.importer(__dirname);
 
 // Pass your keystone instance to the module
@@ -78,6 +79,7 @@ exports = module.exports = function (app) {
 	app.post('/control_panel/restaurant/update', middleware.onlyNotEmpty, routes.controlPanel.preferences.update)
 	app.get('/control_panel/preferences', routes.controlPanel.preferences.view);
 	app.get('/control_panel/restaurant-info', routes.controlPanel.info);
+	app.put('/control_panel/api/restaurant-info', info.update);
 	app.get('/control_panel/preferences-generate', function (req, res) {
 		const token = jwt.sign({ user: req.user }, process.env.TOKEN_SECRET, {
 			expiresIn: '2629743m' // 5 years

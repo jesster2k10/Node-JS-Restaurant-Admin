@@ -4,27 +4,22 @@ block content
 	
 	br
 
-	form.col.s12(class='formValidate' id='formValidate' method='post' action='/control_panel/restaurant/update', novalidate='novalidate')
+	form.col.s12(class='formValidate' id='form' method='post' novalidate='novalidate')
 		.row
 			.input-field.col.s12
-				input(placeholder='Restaurant Name' id='restaurantName' name='restaurantName' type='text' class='validate' required='' data-error='.errorTxt1')
-				label(for='restaurantName' class='active') Restaurant Name
-
+				input(placeholder='Restaurant Name' id='name' name='name' type='text' class='validate' required='' data-error='.errorTxt1')
+				label(for='name' class='active') Restaurant Name
+				
+		#error-row.row
+			p.center(style='color: red;' id='error')
+			
 		.row
 			br
 			
 			.col.s12
 				label Restaurant About Us
-				textarea(type='date' id='validFromDate' name='productDescription' required='' data-error='.errorTxt3' class='materialize-textarea' length='1500')
-		.row
-			br
-			#input-select.row
-				.col.s6
-					.input-field.col.s16
-						label Restaurant Logo
-						|
-						input(type='file' name='file' style='margin-top:20px;' accept='image/*')
-
+				textarea(type='date' id='about' name='about' required='' data-error='.errorTxt3' class='materialize-textarea' length='1500')
+				
 		.row
 			br
 			.input-field.col.s4
@@ -58,4 +53,57 @@ block content
 				
 		.row
 			.input-field.col.s12
-				button.btn Submit
+				button.buttonload.btn.waves-effect.waves-light.col.s12(type='submit' name='submit' id='submit')
+					i.fa.fa-spinner.fa-spin(id='spinner')
+					| Loading
+				
+
+	script.
+		$(window).load(function () {
+			$('#error-row').hide();
+			$('#spinner').hide();
+			$('#buttonText').show();
+		});
+
+		$(document).ajaxStart(function () {
+			$('#spinner').show();
+			$('#buttonText').hide();
+		});
+
+		$(document).ajaxComplete(function () {
+			$('#spinner').hide();
+			$('#buttonText').show();
+		});
+
+		$(function () {
+			$('#form').submit(function (e) {
+				e.preventDefault();
+
+				var data = {
+					name: $('input[name=name]').val(),
+					about: $('input[name=about]').val(),
+					twitter: $('input[name=twitter]').val(),
+					facebook: $('input[name=facebook]').val(),
+					google: $('input[name=google_plus]').val(),
+					youtube: $('input[name=youtube]').val(),
+					website: $('input[name=website]').val()
+				}
+
+				$.ajax({
+					data,
+					type: 'PUT',
+					url: '/control_panel/api/restaurant-info',
+					success: function (data) {
+						if (data.success == false) {
+							console.log(data);
+							$('#error-row').show();
+							$('#error').text(data.error);
+						} else {
+							window.location.href = '/control_panel'
+						}
+					}
+				});
+			})
+		});
+			
+					

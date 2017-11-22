@@ -6,7 +6,7 @@ let keystone = require('keystone'),
 
 let RestaurantInformation = new keystone.List('RestaurantInformation', {
 	autokey: { path: 'slug', from: 'title', unique: true },
-	hidden: false,
+	hidden: true,
 });
 
 RestaurantInformation.add({

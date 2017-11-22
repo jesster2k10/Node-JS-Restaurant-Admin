@@ -24,7 +24,7 @@ Order.add({
 	orderDate: { type: Types.Datetime, default: Date.now, required: true, initial: false },
 	orderNote: { type: String, required: false },
 	products: { type: Types.Relationship, ref: 'Meal', many: true, initial: true },
-	transaction: { type: Types.Relationship, ref: 'Transaction', many: false, initial: false },
+	transaction: { type: Types.Relationship, ref: 'Transaction', many: false, initial: false, required: false },
 	user: { type: Types.Relationship, ref: 'User', many: false, initial: false },
 	status: { type: Types.Select, required: false, initial: false, options: [
 		{ value: 'Completed', label: 'Completed' },
@@ -32,6 +32,7 @@ Order.add({
 		{ value: 'Failed', label: 'Failed' },
 		{ value: 'Cancelled', label: 'Cancelled' },
 	] },
+	type: { type: String, required: false }
 });
 
 Order.register();

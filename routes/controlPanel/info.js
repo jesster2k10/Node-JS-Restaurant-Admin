@@ -2,7 +2,6 @@
  * Created by jesseonolememen on 28/08/2017.
  */
 var keystone = require('keystone');
-var restaurant = require('../../helpers/restaurant');
 
 exports = module.exports = function (req, res) {
 
@@ -15,3 +14,4 @@ exports = module.exports = function (req, res) {
 
 	view.render('info');
 };
+
