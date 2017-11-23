@@ -15,17 +15,17 @@ var Order = new keystone.List('Order', {
 });
 
 Order.add({
-	ordererName: { type: Types.Name, required: true, initial: true },
-	billingName: { type: Types.Name, required: true, initial: true },
-	billingAddress: { type: Types.Location, defaults: { country: 'Ireland'}, required: true, initial: true },
-	deliveryAddress: { type: Types.Location, defaults: { country: 'Ireland'}, required: true, initial: true },
-	total: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
-	delivery: { type: Types.Money, format: '€0,0.00', required: true, initial: true },
-	orderDate: { type: Types.Datetime, default: Date.now, required: true, initial: false },
+	ordererName: { type: Types.Name, required: false, initial: true },
+	billingName: { type: Types.Name, required: false, initial: true },
+	billingAddress: { type: Types.Location, defaults: { country: 'Ireland'}, required: false, initial: true },
+	deliveryAddress: { type: Types.Location, defaults: { country: 'Ireland'}, required: false, initial: true },
+	total: { type: Types.Number, required: false, initial: true },
+	delivery: { type: Types.Number, required: false, initial: true },
+	orderDate: { type: Types.Datetime, default: Date.now, required: false, initial: false },
 	orderNote: { type: String, required: false },
 	products: { type: Types.Relationship, ref: 'Meal', many: true, initial: true },
 	transaction: { type: Types.Relationship, ref: 'Transaction', many: false, initial: false, required: false },
-	user: { type: Types.Relationship, ref: 'User', many: false, initial: false },
+	user: { type: Types.Relationship, ref: 'User', required: false, many: false, initial: false },
 	status: { type: Types.Select, required: false, initial: false, options: [
 		{ value: 'Completed', label: 'Completed' },
 		{ value: 'Delivered', label: 'Delivered' },
