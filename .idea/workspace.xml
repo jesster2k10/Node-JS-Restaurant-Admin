@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2529963-6035-4166-89bb-5d7e97433808" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/helpers/locations.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/helpers/notifications.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/helpers/orders.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/Notification.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/api/orders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/restaurant.js" afterPath="$PROJECT_DIR$/helpers/restaurant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Order.js" afterPath="$PROJECT_DIR$/models/Order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.js" afterPath="$PROJECT_DIR$/models/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/controlPanel/panel.js" afterPath="$PROJECT_DIR$/routes/controlPanel/panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/views/dashboard.pug" afterPath="$PROJECT_DIR$/templates/views/dashboard.pug" />
-    </list>
+    <list default="true" id="c2529963-6035-4166-89bb-5d7e97433808" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -163,7 +148,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="638" />
+    <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
   <component name="ProjectView">
@@ -578,18 +563,18 @@
       <workItem from="1511367243227" duration="220000" />
       <workItem from="1511422613603" duration="2378000" />
       <workItem from="1511472652909" duration="5248000" />
-      <workItem from="1511547815005" duration="574000" />
+      <workItem from="1511547815005" duration="722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220001000" />
+    <option name="totallyTimeSpent" value="220149000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="638" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4019449" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19698173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4864865" sideWeight="0.32607117" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293124" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
