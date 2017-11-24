@@ -2,9 +2,9 @@ extends ../layouts/dashboard
 block content
 	h1 Welcome, #{user.name.first} #{user.name.last}
 	p Here is the latest information for you restaurant #}. You have a total of
-		strong  #} orders
+		strong  #{totalOrders} orders
 		|  and a total of
-		strong  #
+		strong  #{totalReservations}
 		|  reservations made to date.
 
 	#card-stats.seaction
@@ -17,7 +17,7 @@ block content
 						p.card-stats-title
 							i.mdi-social-group-add
 							|  New Reservations
-						h4.card-stats-number 566
+						h4.card-stats-number #{totalNewReservations}
 						p.card-stats-compare
 							i.mdi-hardware-keyboard-arrow-up
 							|  15%
@@ -31,7 +31,8 @@ block content
 						p.card-stats-title
 							i.mdi-editor-attach-money
 							| Total Sales
-						h4.card-stats-number #{currency} #{totalSales}
+						h4.card-stats-number 
+							| #{currency} #{totalSales}
 					.card-action.purple.darken-2
 						#sales-compositebar.center-align
 							canvas(style='display: inline-block; width: 214px; height: 25px; vertical-align: top;', width='214', height='25')
@@ -41,7 +42,7 @@ block content
 						p.card-stats-title
 							i.mdi-action-trending-up
 							|  Today Profit
-						h4.card-stats-number $806.52
+						h4.card-stats-number #{currency} #{profit}
 						p.card-stats-compare
 							i.mdi-hardware-keyboard-arrow-up
 							|  80%

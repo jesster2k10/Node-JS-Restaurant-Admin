@@ -12,9 +12,28 @@ User.add({
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: true, hidden: true },
 	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
-	addresses: { type: Types.Relationship, ref: 'Address', required: false, many: true, initial: false, }
+	addresses: { type: Types.Relationship, ref: 'Address', required: false, many: true, initial: false, },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	type: {
+		type: Types.Select,
+		required: false,
+		default: 'User',
+		options: [
+			{
+				value: 'Admin',
+				label: 'Admin'
+			},
+			{
+				value: 'Staff',
+				label: 'Staff',
+			},
+			{
+				user: 'user',
+				label: 'User',
+			}
+		]
+	}
 }, 'Social Accounts', {
 	facebook: {
 		ID: { type: String, required: false },
@@ -27,6 +46,10 @@ User.add({
 }, 'Other', {
 	stripe: {
 		customerID: { type: String, required: false },
+	},
+	deviceIdentifier: {
+		type: String,
+		required: false,
 	}
 });
 

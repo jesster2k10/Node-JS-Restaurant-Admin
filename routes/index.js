@@ -21,6 +21,7 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var restaurant = require('../helpers/restaurant');
+var helper = require('../helpers/orders');
 var info = require('../helpers/information');
 var importRoutes = keystone.importer(__dirname);
 
@@ -211,6 +212,10 @@ exports = module.exports = function (app) {
 		Table: {
 			envelop: "results",
 			methods: ["list"]
+		},
+		Notification: {
+			envelop: "results",
+			methods: ["create", "list", "retrieve"],
 		}
 	}).before("update remove create list retrieve", {
 		Order: routes.api.auth.checkAuth,

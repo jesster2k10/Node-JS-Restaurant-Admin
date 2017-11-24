@@ -2,9 +2,9 @@
  * Created by jesseonolememen on 21/08/2017.
  */
 var keystone = require('keystone');
-var restaurant = require('../../helpers/restaurant');
+var controller = require('../../controllers/panelController');
 
-exports = module.exports = function (req, res) {
+exports = module.exports = async function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
@@ -13,13 +13,22 @@ exports = module.exports = function (req, res) {
 	// item in the header navigation.
 	locals.section = 'home';
 	
-	restaurant.calculateTotalSales()
-		.then(result => {
-			view.render('dashboard', { totalSales: result });
+	try {
+		let totalOrders = await controller.getTotalOrders();
+		let totalSales = await controller.getTotalSales();
+		let currency = await controller.getCurrency();
+		
+		view.render('dashboard', {
+			totalSales,
+			currency,
+			totalOrders,
 		})
-		.catch(error => {
-			console.log(error);
-			view.render('dashboard', { totalSales: 0 });
-		});
+	} catch (_) {
+		view.render('dashboard', {
+			totalSales: 0,
+			currency: '€',
+			totalOrders: 0,
+		})
+	}
 
 };
