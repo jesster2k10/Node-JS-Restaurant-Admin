@@ -16,17 +16,33 @@ exports.Braintree = {
 		return gateway;
 	},
 	
+	getClientToken: function () {
+		return new Promise((resolve, reject) => {
+			gateway.clientToken.generate({}, (error, response) => {
+				if (error) {
+					reject(error);
+				} else {
+					resolve(response.clientToken);
+				}
+			})
+		})
+	},
+	
 	makePayment: function (nonce, amount) {
 		return new Promise((resolve, reject) => {
 			gateway.transaction.sale({
-				amount: `${amount.toFixed(2)}`,
+				amount: `${amount}`,
 				paymentMethodNonce: nonce,
 				options: {
 					submitForSettlement: true
 				}
 			}, function(error, result) {
-				if (result) {
+				console.log(result);
+				
+				if (!result.errors) {
 					resolve(result);
+				} else if (result.message && result.errors) {
+					reject(result.message);
 				} else {
 					reject(error);
 				}

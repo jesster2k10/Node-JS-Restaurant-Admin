@@ -17,7 +17,16 @@ exports.Braintree = {
 		
 		payments.Braintree.makePayment(nonce, amount)
 			.then(( result ) => res.status(200).json({ success: true, error: null, result: result }))
-			.catch(( { code, message } ) => res.status(500).json({ success: false, error: { code, message }}))
+			.catch(error => res.status(500).json({ success: false, error: error}))
+	},
+	
+	generateClientToken: async function (req, res) {
+		try {
+			let token = await payments.Braintree.getClientToken();
+			res.status(200).json({ success: true, token });
+		} catch (error) {
+			res.status(500).json({ success: false, error: error.message });
+		}
 	}
 };
 

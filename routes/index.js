@@ -131,6 +131,7 @@ exports = module.exports = function (app) {
 	
 	app.route('/api/payments/').post(routes.api.auth.checkAuth, routes.api.payments.makePayment);
 	app.route('/api/payments/braintree/').post(routes.api.auth.checkAuth, routes.api.payments.Braintree.makePayment);
+	app.route('/api/payments/braintreee/client_token').get(routes.api.auth.checkAuth, routes.api.payments.Braintree.generateClientToken);
 	
 	app.route('/api/payments/customer/')
 		.get(routes.api.auth.checkAuth, routes.api.payments.getCustomer)
