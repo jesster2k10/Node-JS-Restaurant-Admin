@@ -14,11 +14,16 @@ var Meal = new keystone.List('Meal', {
 });
 
 Meal.add({
-	name: { type: Types.Text, required: true, initial: true },
-	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true },
-	images: { type: Types.CloudinaryImages, required: true, initial: true},
-	description: { type: Types.Textarea, required: true, initial: true },	
-	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true },
+	name: { type: Types.Text, required: true, initial: true }, 
+	isAnExtra: {
+		type: Types.Boolean,
+		required: true,
+		initial: true,
+	},
+	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	images: { type: Types.CloudinaryImages, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	description: { type: Types.Textarea, required: true, initial: true, dependsOn: { isAnExtra: false } },	
+	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true, dependsOn: { isAnExtra: false } },
 	serves: { type: Types.Select, required: true, initial: true, options: [
 		{ value: '1', label: '1' },
 		{ value: '2', label: '2' },
@@ -31,9 +36,22 @@ Meal.add({
 		{ value: '9', label: '9' },
 		{ value: '10', label: '10' },
 		{ value: '10+', label: '10+' }
-	] },
+	], dependsOn: { isAnExtra: false } },
 	isAvailable: { type: Types.Boolean, required: true, initial: true},
-	isFeatured: { type: Types.Boolean, required: true, initial: true }
+	isFeatured: { type: Types.Boolean, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	extras: {
+		type: Types.Relationship,
+		ref: 'Meal',
+		many: true,
+		required: false,
+		initial: true,
+		dependsOn: {
+			isAnExtra: false,
+		},
+		filters: {
+			isAnExtra: true,
+		}
+	}
 }, "Cost", {
 		currency: { type: Types.Select, required: true, initial: true, options: [
 			{ value: 'USD', label: 'USD' },
@@ -50,9 +68,9 @@ Meal.add({
 	taxPercentage: { type: Types.Number, initial: true, required: false },
 },
 	"Options", {
-		enableOptions: { type: Types.Boolean, required: false, initial: false, default: false},
-		options: { type: Types.Relationship, ref: 'MealOption', many: true, initial: false }
-	}
+		enableOptions: { type: Types.Boolean, required: false, initial: false, default: false,  dependsOn: { isAnExtra: false }},
+		options: { type: Types.Relationship, ref: 'MealOption', many: true, initial: false,  dependsOn: { isAnExtra: false } }
+	},
 );
 
 // , "Option One", {

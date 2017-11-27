@@ -150,7 +150,10 @@ exports = module.exports = function (app) {
 		Meal: {
 			populate: ["options"],
 			envelop: "results",
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve"],
+			filter: {
+				isAnExtra: false,
+			}
 		},
 		MealCategory: {
 			envelop: "results",
