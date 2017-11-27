@@ -20,6 +20,7 @@ Meal.add(
 		type: Types.Boolean,
 		required: true,
 		initial: true,
+		default: false,
 	},
 	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true, dependsOn: { isAnExtra: false } },
 	images: { type: Types.CloudinaryImages, required: true, initial: true, dependsOn: { isAnExtra: false } },
@@ -74,29 +75,6 @@ Meal.add(
 	}
 );
 
-// , "Option One", {
-// 	enableOptionOne: {type: Types.Boolean, required: false, default: false, initial: false},
-// 	optionOne: {
-// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
-// 		name: { type: Types.Text, required: false },
-// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
-// 	}
-// }, "Option Two", {
-// 	enableOptionTwo: {type: Types.Boolean, required: false, default: false, initial: false },
-// 	optionTwo: {
-// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
-// 		name: { type: Types.Text, required: false },
-// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
-// 	}
-// }, "Option Three", {
-// 	enableOptionThree: {type: Types.Boolean, required: false, default: false, initial: false},
-// 	optionThree: {
-// 		id: { type: Types.Text, required: false, initial: false, default: new mongoose.Types.ObjectId().toString() },
-// 		name: { type: Types.Text, required: false },
-// 		cost: { type: Types.Money, format: '€0,0.00', required: false },
-// 	}
-// }
-
 function empty( val ) {
 
 	// test results
@@ -137,7 +115,7 @@ function empty( val ) {
 }
 
 Meal.relationship({ ref: 'MealReview', path: 'mealReviews', refPath: 'meal' });
-Meal.defaultColumns = 'name, featuredImage|20%, author|20%, publishedDate|20%';
+Meal.defaultColumns = 'name, featuredImage, isAnExtra|20%, author|20%, publishedDate|20%';
 
 Meal.schema.pre('validate', function(next) {
 	if (this.enableOptions && empty(this.options) ){

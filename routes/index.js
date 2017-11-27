@@ -148,7 +148,7 @@ exports = module.exports = function (app) {
 			methods: ["retrieve", "create", "update", "remove"]
 		},
 		Meal: {
-			populate: ["options"],
+			populate: ["options", "extras"],
 			envelop: "results",
 			methods: ["list", "retrieve"],
 			filter: {
