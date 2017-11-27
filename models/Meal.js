@@ -13,7 +13,8 @@ var Meal = new keystone.List('Meal', {
 	autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-Meal.add({
+Meal.add(
+{
 	name: { type: Types.Text, required: true, initial: true }, 
 	isAnExtra: {
 		type: Types.Boolean,
@@ -53,7 +54,7 @@ Meal.add({
 		}
 	}
 }, "Cost", {
-		currency: { type: Types.Select, required: true, initial: true, options: [
+	currency: { type: Types.Select, required: true, initial: true, options: [
 			{ value: 'USD', label: 'USD' },
 			{ value: 'EUR', label: 'EUR' },
 			{ value: 'GBP', label: 'GBP' },
@@ -67,10 +68,10 @@ Meal.add({
 	chargesTax: { type: Types.Boolean, required: true, default: true },
 	taxPercentage: { type: Types.Number, initial: true, required: false },
 },
-	"Options", {
+"Options", {
 		enableOptions: { type: Types.Boolean, required: false, initial: false, default: false,  dependsOn: { isAnExtra: false }},
-		options: { type: Types.Relationship, ref: 'MealOption', many: true, initial: false,  dependsOn: { isAnExtra: false } }
-	},
+		options: { type: Types.Relationship, ref: 'MealOption', many: true, initial: false,  dependsOn: { isAnExtra: false } },
+	}
 );
 
 // , "Option One", {
