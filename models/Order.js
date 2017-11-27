@@ -37,6 +37,13 @@ Order.add({
 		{ value: 'Pending', label: 'Pending' },
 		{ value: 'Cancelled', label: 'Cancelled' },
 	] },
+	paymentType: { type: Types.Select, required: false, initial: false, default: 'Cash', options: [
+		{ value: 'PAYPAL', label: 'PayPal' },
+		{ value: 'CASH', label: 'Cash' },
+		{ value: 'APPLE_PAY', label: 'Apple Pay' },
+		{ value: 'ANDROID_PAY', label: 'Android Pay' },
+		{ value: 'CARD', label: 'Card' },
+	] },
 	type: { type: String, required: false },
 	waitTime: {
 		type: Number,
