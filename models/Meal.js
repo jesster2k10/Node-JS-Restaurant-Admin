@@ -18,7 +18,7 @@ Meal.add(
 	name: { type: Types.Text, required: true, initial: true }, 
 	isAnExtra: {
 		type: Types.Boolean,
-		required: true,
+		required: false,
 		initial: true,
 		default: false,
 	},
