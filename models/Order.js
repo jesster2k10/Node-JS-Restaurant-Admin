@@ -26,7 +26,7 @@ Order.add({
 	deliveryAddress: { type: Types.Location, defaults: { country: 'Ireland'}, required: false, initial: true },
 	total: { type: Types.Number, required: false, initial: true },
 	delivery: { type: Types.Number, required: false, initial: true },
-	orderDate: { type: Types.Date, default: Date.now, required: false, initial: false },
+	orderDate: { type: Types.Datetime, default: Date.now, required: false, initial: false },
 	orderNote: { type: String, required: false },
 	products: { type: Types.Relationship, ref: 'Meal', many: true, initial: true },
 	transaction: { type: Types.Relationship, ref: 'Transaction', many: false, initial: false, required: false },
