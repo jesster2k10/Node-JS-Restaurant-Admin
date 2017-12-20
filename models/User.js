@@ -50,6 +50,16 @@ User.add({
 	deviceIdentifier: {
 		type: String,
 		required: false,
+	},
+	resetPasswordToken: {
+		type: String,
+		required: false,
+		hidden: true,
+	},
+	resetPasswordExpires: {
+		type: Date,
+		required: false,
+		hidden: false,
 	}
 });
 

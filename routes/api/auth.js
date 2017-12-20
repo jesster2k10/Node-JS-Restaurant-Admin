@@ -3,9 +3,12 @@
  */
 var jwt = require('jsonwebtoken');
 var keystone = require('keystone');
+var async = require('async');
+var nodemailer = require('nodemailer');
 var client = require('redis').createClient(process.env.REDIS_URL);
 
 let Address = keystone.list('Address');
+let User = keystone.list('User');
 
 const BLACKLISTED_TOKENS_KEY = 'blacklisted_tokens';
 
@@ -246,3 +249,62 @@ exports.getAddress = function getAddresses(req, res) {
 		});
 	});
 };
+
+exports.forgotPassword = function (req, res) {
+	async.waterfall([
+		function(done) {
+			crypto.randomBytes(20, function(err, buf) {
+				var token = buf.toString('hex');
+				done(err, token);
+			});
+		},
+		function(token, done) {
+			User.findOne({ email: req.body.email }, function(err, user) {
+				if (!user) {
+					return res.status(400)
+						.json({
+							success: false,
+							error: 'No user found with specified details',
+						})
+				}
+
+				user.resetPasswordToken = token;
+				user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+				user.save(function(err) {
+					done(err, token, user);
+				});
+			});
+		},
+		function(token, user, done) {
+			var smtpTransport = nodemailer.createTransport('SMTP', {
+				service: 'SendGrid',
+				auth: {
+					user: process.env.MAILGUN_DOMAIN,
+					pass: process.env.MAILGUN_API_KEY,
+				}
+			});
+			var mailOptions = {
+				to: user.email,
+				from: 'jesster2k10@gmail.com',
+				subject: 'Node.js Password Reset',
+				text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+				'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+				'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+				'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+			};
+			smtpTransport.sendMail(mailOptions, function(err) {
+				return res.status(200)
+					.json({
+						success: true,
+					})
+			});
+		}
+	], function(err) {
+		return res.status(400)
+			.json({
+				success: false,
+				error: error.message,
+			})
+	});
+}

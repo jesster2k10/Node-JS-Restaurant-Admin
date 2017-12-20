@@ -48,6 +48,10 @@ Order.add({
 	waitTime: {
 		type: Number,
 		required: false,
+	},
+	currency: {
+		type: String,
+		required: false,
 	}
 });
 

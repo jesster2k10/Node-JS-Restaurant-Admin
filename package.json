@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.0.0-beta.4",
-    "async": "2.1.4",
+    "async": "^2.1.4",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "braintree": "^2.3.0",
@@ -24,6 +24,7 @@
     "node-pushnotifications": "^1.0.18",
     "node-sass": "4.5.0",
     "node-sass-middleware": "^0.11.0",
+    "nodemailer": "^4.4.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
