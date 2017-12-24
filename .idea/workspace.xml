@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c2529963-6035-4166-89bb-5d7e97433808" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Order.js" afterPath="$PROJECT_DIR$/models/Order.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.js" afterPath="$PROJECT_DIR$/models/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api/auth.js" afterPath="$PROJECT_DIR$/routes/api/auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,30 +23,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="payments.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helpers/payments.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2037">
-              <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
+            <state relative-caret-position="176">
+              <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Order.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Order.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Order.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="802">
               <caret line="51" column="15" lean-forward="false" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
               <folding />
             </state>
@@ -69,18 +56,28 @@
       <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="407">
               <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="User.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1281">
-              <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+            <state relative-caret-position="273">
+              <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="info.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/controlPanel/info.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -101,7 +98,7 @@
       <file leaf-file-name="Transaction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Transaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="407">
               <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
               <folding />
             </state>
@@ -111,8 +108,8 @@
       <file leaf-file-name="orders.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helpers/orders.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="36" column="138" lean-forward="false" selection-start-line="36" selection-start-column="138" selection-end-line="36" selection-end-column="138" />
+            <state relative-caret-position="176">
+              <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -150,9 +147,9 @@
       <find>env</find>
       <find>browserify</find>
       <find>mongoose</find>
-      <find>required: true</find>
       <find>isAnExtra: true</find>
       <find>required</find>
+      <find>required: true</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,11 +204,11 @@
         <option value="$PROJECT_DIR$/helpers/orders.js" />
         <option value="$PROJECT_DIR$/helpers/payments.js" />
         <option value="$PROJECT_DIR$/routes/api/payments.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/models/Meal.js" />
-        <option value="$PROJECT_DIR$/models/User.js" />
         <option value="$PROJECT_DIR$/routes/api/auth.js" />
         <option value="$PROJECT_DIR$/models/Order.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/models/User.js" />
       </list>
     </option>
   </component>
@@ -227,7 +224,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1280" />
+    <option name="width" value="638" />
     <option name="height" value="800" />
   </component>
   <component name="ProjectView">
@@ -245,7 +242,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -435,6 +431,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -654,36 +651,37 @@
       <workItem from="1512979709624" duration="1505000" />
       <workItem from="1513012356536" duration="693000" />
       <workItem from="1513775308495" duration="582000" />
-      <workItem from="1513777749355" duration="464000" />
+      <workItem from="1513777749355" duration="995000" />
+      <workItem from="1514121747834" duration="1946000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232278000" />
+    <option name="totallyTimeSpent" value="234755000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="0" width="638" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40190628" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40190628" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4864865" sideWeight="0.32607117" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293124" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31917807" sideWeight="0.67392886" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31917807" sideWeight="0.67392886" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -811,13 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="11" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/controlPanel/info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -997,50 +988,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2037">
-          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Transaction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1281">
-          <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/orders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="36" column="138" lean-forward="false" selection-start-line="36" selection-start-column="138" selection-end-line="36" selection-end-column="138" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/payments.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="28" column="9" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1053,10 +1004,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/controlPanel/info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/Order.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="802">
           <caret line="51" column="15" lean-forward="false" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/orders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Transaction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
           <folding />
         </state>
       </provider>

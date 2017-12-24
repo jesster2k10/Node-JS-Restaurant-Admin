@@ -39,7 +39,10 @@ keystone.pre('render', middleware.flashMessages);
 
 // Handle 404 errors
 keystone.set('404', function(req, res, next) {
-	res.notfound();
+	res.status(404).json({
+		success: false,
+		message: 'Requested resource not found!'
+	});
 });
 
 // Handle other errors
@@ -71,6 +74,23 @@ exports = module.exports = function (app) {
 		} else {
 			return res.redirect('/control_panel/login');
 		}
+	});
+	
+	app.get('/api/v2/users', async function (req, res) {
+		const User = keystone.list('User').model;
+		
+		const newUser = new User({
+			email: 'jesse@gmail.com',
+			password: 'fat',
+			name: {
+				first: 'Oj'
+			},
+			type: 'Admin'
+		});
+		
+		newUser.save(function (e, a) {
+			res.json({ e, a, })
+		})
 	});
 	
 	app.get('/control_panel', routes.controlPanel.panel);
