@@ -30,7 +30,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'port': process.env.port || 3001,
+	'port': process.env.PORT || 3001,
 	'mongo': process.env.MONGODB_URI
 });
 
