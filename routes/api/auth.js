@@ -59,7 +59,6 @@ exports.checkAuth = function checkAuth(req, res, next) {
 	// if (req.user) return next();
 	// return res.status(403).json({ 'error': 'no access' });
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
 	// decode token
 	if (token) {
 
@@ -155,24 +154,19 @@ exports.verify = function verify(req, res) {
 };
 
 exports.signin = function signin(req, res) {
-	console.log('sign in');
-	console.log(req.body)
-	
 	if (!req.body.username || !req.body.password) {
-		return res.json({ success: false, error: 'The credentials that you entered were valid or missing.' });
+		return res.status(400).json({ success: false, error: 'The credentials that you entered were valid or missing.', message: 'The credentials that you entered were valid or missing.' });
 	}
 
 	keystone.list('User').model.findOne({ email: req.body.username.toLowerCase() }).exec(function(err, user) {
 		if (err || !user) {
-			return res.json({
+			return res.status(422).json({
 				success: false,
 				session: false,
 				token: null,
 				message: (err && err.message ? err.message : false) || 'No account was found with the details you entered.'
 			});
 		}
-		
-		console.log(user)
 
 		keystone.session.signin({ email: user.email, password: req.body.password }, req, res, function(user) {
 			let tokenUser = {
@@ -194,13 +188,12 @@ exports.signin = function signin(req, res) {
 				session: true,
 				token: token,
 				date: new Date().getTime(),
-				userId: user.id
+				userId: user.id,
+				isAdmin: user.isAdmin,
 			});
 
 		}, function(err) {
-			console.log(err)
-
-			return res.json({
+			return res.status(422).json({
 				success: false,
 				session: false,
 				token: null,

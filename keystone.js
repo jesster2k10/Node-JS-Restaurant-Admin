@@ -6,6 +6,8 @@ require('dotenv').config();
 var keystone = require('keystone');
 var passport = require('passport');
 
+var socket = require('socket.io');
+
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -28,8 +30,13 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+	'port': 3001,
 	'mongo': process.env.MONGODB_URI
 });
+
+keystone.set('cors allow origin', true);
+keystone.set('cors allow methods', true);
+keystone.set('cors allow headers', true);
 
 keystone.pre('routes', passport.initialize());
 keystone.pre('routes', passport.session());
@@ -75,5 +82,17 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 	+ '\nset up your mailgun integration');
 }
 
+keystone.start({
+	onStart: function () {
+		var hserver = keystone.httpServer;
+		var io = keystone.set('io', socket.listen(hserver)).get('io');
 
-keystone.start();
+		io.on('connection', function (socket) {
+			console.log(`Socket connected ${socket.id}`);
+			
+			socket.on('NEW_ORDER', function (data) {
+				console.log('new order');
+			})
+		});
+	}
+});

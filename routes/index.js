@@ -93,6 +93,9 @@ exports = module.exports = function (app) {
 		})
 	});
 	
+	app.all('/api/*', middleware.setCors);
+	app.options('/api*', function(req, res) { res.sendStatus(200); });
+	
 	app.get('/control_panel', routes.controlPanel.panel);
 	app.get('/control_panel/login', routes.controlPanel.login);
 	
@@ -168,12 +171,12 @@ exports = module.exports = function (app) {
 			methods: ["retrieve", "create", "update", "remove"]
 		},
 		Meal: {
-			populate: ["options", "extras"],
-			envelop: "results",
+			populate: ["options", "extras", "categories"],
 			methods: ["list", "retrieve"],
 			filter: {
 				isAnExtra: false,
-			}
+			},
+			envelop: "results",
 		},
 		MealCategory: {
 			envelop: "results",
@@ -215,7 +218,7 @@ exports = module.exports = function (app) {
 			envelop: "results",
 			populate: ["addresses"],
 			show : ["_id", "email", "isAdmin", "name"],
-			methods: ["retrieve", "create", "update", "remove"]
+			methods: ["retrieve", "create", "update", "remove", "list"]
 		},
 		Transaction: {
 			envelop: "results",
@@ -249,13 +252,15 @@ exports = module.exports = function (app) {
 		MealReview: routes.api.auth.checkAuth,
 		Photo: routes.api.auth.checkAuth,
 		MealFavourite: routes.api.checkAuth,
-		Address: routes.api.checkAuth
+		Address: routes.api.checkAuth,
 	}).before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,
 			update: routes.api.auth.checkUserMatches,
 			remove: routes.api.auth.checkUserMatches,
 		},
+	}).after({
+		
 	}).start();
 
 };

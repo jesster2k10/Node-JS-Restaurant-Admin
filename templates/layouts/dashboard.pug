@@ -13,20 +13,22 @@ html
 										img(src='images/materialize-logo.png', alt='materialize logo')
 									|
 									span.logo-text Materialize
-						.header-search-wrapper.hide-on-med-and-down
-							i.mdi-action-search
-							|
-							input.header-search-input.z-depth-2(type='text', name='Search', placeholder='Explore Materialize')
+						
 						ul.right.hide-on-med-and-down
 							li
 								a.waves-effect.waves-block.waves-light.translation-button(href='javascript:void(0);', data-activates='translation-dropdown')
 									img(src='images/flag-icons/United-States.png', alt='USA')
 								ul#translation-dropdown.dropdown-content
 									li
-										a(href='#!')
+										a(href='/control_panel/languages/english')
 											img(src='images/flag-icons/United-States.png', alt='English')
 											|
-											span.language-select English
+											span.language-select  English
+											
+										a(href='/control_panel/languages/switzerland')
+											img(src='images/flag-icons/Switzerland.png', alt='English')
+											|
+											span.language-select  Switzerland	
 							li
 								a.waves-effect.waves-block.waves-light.toggle-fullscreen(href='javascript:void(0);')
 									i.mdi-action-settings-overscan
@@ -78,10 +80,6 @@ html
 				include ../includes/menu
 				section#content
 					#breadcrumbs-wrapper
-						.header-search-wrapper.grey.hide-on-large-only
-							i.mdi-action-search.active
-							|
-							input.header-search-input.z-depth-2(type='text', name='Search', placeholder='Explore Materialize')
 						div.container
 							div.row
 								div.col.s12.m12.l12

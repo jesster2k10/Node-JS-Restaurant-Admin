@@ -3,6 +3,7 @@
  */
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var socket = require('socket.io');
 
 var orderHelper = require('../helpers/orders');
 var restaurant = require('../helpers/restaurant');
@@ -61,10 +62,11 @@ Order.schema.pre('save', async function (next) {
 	try {
 		let wait = await orderHelper.calculateTimeToDeliverOrder(this);
 		this.waitTime = wait;
-		
-		next();
 	} catch (error) {
 		this.waitTime = restaurant.getBaseTime();
+	} finally {
+		var io = keystone.get('io');
+		io.emit('NEW_ORDER', this);
 		next();
 	}
 });
