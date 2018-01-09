@@ -54,6 +54,47 @@ exports.checkUserMatches = function checkUserMatches(req, res, next) {
 	}
 };
 
+exports.checkIsAdmin = function checkUserMatches(req, res, next) {
+	let token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	if (token) {
+		jwt.verify(token, process.env.TOKEN_SECRET, function(err, decoded) {
+			console.log(decoded);
+
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
+			} else {
+				client.sismember(BLACKLISTED_TOKENS_KEY, token, function (err, reply) {
+					if (err) {
+						return res.json({ success: false, message: 'Failed to authenticate token.' });
+					} else {
+						if (reply == 0) {
+							let decodedObject = decoded._doc ? decoded._doc : decoded;
+
+							if (!decodedObject.isAdmin) {
+								return res.json({ success: false, message: 'This is not the admin user' })
+							} else {
+								req.decoded = decoded;
+								next();
+							}
+						} else {
+							return res.json({ success: false, message: 'Failed to authenticate token.' });
+						}
+					}
+				});
+			}
+		});
+	} else {
+
+		// if there is no token
+		// return an error
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+	}
+};
+
 exports.checkAuth = function checkAuth(req, res, next) {
 	// // you could check user permissions here too
 	// if (req.user) return next();

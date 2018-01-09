@@ -259,6 +259,12 @@ exports = module.exports = function (app) {
 			update: routes.api.auth.checkUserMatches,
 			remove: routes.api.auth.checkUserMatches,
 		},
+		Meal: {
+			create: routes.api.auth.checkIsAdmin,
+		},
+		MealCategory: {
+			create: routes.api.auth.checkIsAdmin,
+		}
 	}).after({
 		
 	}).start();
