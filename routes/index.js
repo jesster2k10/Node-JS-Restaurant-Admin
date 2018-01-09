@@ -171,7 +171,7 @@ exports = module.exports = function (app) {
 			methods: ["retrieve", "create", "update", "remove"]
 		},
 		Meal: {
-			populate: ["options", "extras", "categories"],
+			populate: ["options", "extras", "categories", "create"],
 			methods: ["list", "retrieve"],
 			filter: {
 				isAnExtra: false,
@@ -180,7 +180,7 @@ exports = module.exports = function (app) {
 		},
 		MealCategory: {
 			envelop: "results",
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve", "create"]
 		},
 		MealOption: {
 			envelop: "results",
