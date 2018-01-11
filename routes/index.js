@@ -172,7 +172,7 @@ exports = module.exports = function (app) {
 		},
 		Meal: {
 			populate: ["options", "extras", "categories", "create"],
-			methods: ["list", "retrieve"],
+			methods: ["list", "retrieve", "remove", "update", "create"],
 			filter: {
 				isAnExtra: false,
 			},
@@ -180,7 +180,7 @@ exports = module.exports = function (app) {
 		},
 		MealCategory: {
 			envelop: "results",
-			methods: ["list", "retrieve", "create"]
+			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
 		MealOption: {
 			envelop: "results",
@@ -261,9 +261,13 @@ exports = module.exports = function (app) {
 		},
 		Meal: {
 			create: routes.api.auth.checkIsAdmin,
+			delete: routes.api.auth.checkIsAdmin,
+			update: routes.api.auth.checkIsAdmin,
 		},
 		MealCategory: {
 			create: routes.api.auth.checkIsAdmin,
+			delete: routes.api.auth.checkIsAdmin,
+			update: routes.api.auth.checkIsAdmin,
 		}
 	}).after({
 		
