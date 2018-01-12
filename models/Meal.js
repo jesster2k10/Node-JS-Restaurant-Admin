@@ -26,6 +26,7 @@ Meal.add(
 	images: { type: Types.CloudinaryImages, required: true, initial: true, dependsOn: { isAnExtra: false } },
 	description: { type: Types.Textarea, required: true, initial: true, dependsOn: { isAnExtra: false } },	
 	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	cat_ids: { type: Types.Relationship, ref: 'MealCategory', many: true, required: false, initial: false, hidden: true, dependsOn: { isAnExtra: false } },
 	serves: { type: Types.Select, required: true, initial: true, options: [
 		{ value: '1', label: '1' },
 		{ value: '2', label: '2' },
@@ -125,6 +126,11 @@ Meal.schema.pre('validate', function(next) {
 	else {
 		next();
 	}
+});
+
+Meal.schema.pre('save', function (next) {
+	this.cat_ids = this.categories;
+	next();
 });
 
 Meal.register();

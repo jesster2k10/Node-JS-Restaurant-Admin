@@ -122,16 +122,9 @@ exports = module.exports = function (app) {
 	app.route('/api/carts/:id/products/all').get(routes.api.auth.checkAuth, routes.api.carts.clearCart);
 	
 	app.get('/api/meal-reviews/:id/', routes.api.meals.getReviews);
-
-	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
-
-	// =====================================
-	// FACEBOOK ROUTES =====================
-	// =====================================
-	// // route for facebook authentication and login
-	// app.get('/api/auth/facebook', passport.authenticate('facebook'));
-	//
+	
+	app.route('/api/orders/:id/fullfill').post(routes.api.auth.checkIsAdmin, routes.api.orders.fullfillOrder);
+	
 	app.post('/api/auth/facebook', routes.api.facebook.signIn);
 	app.post('/api/auth/google', routes.api.google.signIn);
 	
