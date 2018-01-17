@@ -28,6 +28,15 @@ var importRoutes = keystone.importer(__dirname);
 // Pass your keystone instance to the module
 var restful = require('restful-keystone')(keystone);
 var jwt = require('jsonwebtoken');
+var apicache = require('apicache');
+var redis = require('redis');
+
+// create cache instance
+const cacheWithRedis = apicache
+                      .options({ redisClient: redis.createClient(process.env.REDIS_URL) })
+                      .middleware
+
+const cache = cacheWithRedis('5 minutes');
 
 // import tokens
 //var passport = require('passport');
@@ -76,23 +85,6 @@ exports = module.exports = function (app) {
 		}
 	});
 	
-	app.get('/api/v2/users', async function (req, res) {
-		const User = keystone.list('User').model;
-		
-		const newUser = new User({
-			email: 'jesse@gmail.com',
-			password: 'fat',
-			name: {
-				first: 'Oj'
-			},
-			type: 'Admin'
-		});
-		
-		newUser.save(function (e, a) {
-			res.json({ e, a, })
-		})
-	});
-	
 	app.all('/api/*', middleware.setCors);
 	app.options('/api*', function(req, res) { res.sendStatus(200); });
 	
@@ -116,15 +108,20 @@ exports = module.exports = function (app) {
 	app.get('/gallery', routes.views.gallery);
 	app.get('/overview', routes.views.overview);
 	
+	// Carts
+
 	app.get('/api/cart/:id', routes.api.carts.getCart);
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
 	app.delete('/api/carts/:id/products', routes.api.carts.removeProductFromCart);
 	app.route('/api/carts/:id/products/all').get(routes.api.auth.checkAuth, routes.api.carts.clearCart);
 	
-	app.get('/api/meal-reviews/:id/', routes.api.meals.getReviews);
+	// Meal Reviews
+	app.route('/api/meal-reviews/:id/').get(cache, routes.api.meals.getReviews);
 	
+	// Order Fulfill
 	app.route('/api/orders/:id/fullfill').post(routes.api.auth.checkIsAdmin, routes.api.orders.fullfillOrder);
 	
+	// Auth
 	app.post('/api/auth/facebook', routes.api.facebook.signIn);
 	app.post('/api/auth/google', routes.api.google.signIn);
 	
@@ -132,14 +129,10 @@ exports = module.exports = function (app) {
 	app.post('/api/auth/session/create',  routes.api.auth.signin);
 	app.delete('/api/auth/session/delete', routes.api.auth.signout);
 	
-    //
-	// // handle the callback after facebook has authenticated the user
-	// app.get('/api/auth/facebook/callback',
-	// 	passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
-	// 	// Redirect user back to the mobile app using Linking with a custom protocol OAuthLogin
-	// 	(req, res) => res.redirect('restaurant://login?user=' + JSON.stringify(req.user)));p
-	//
-	app.route('/api/meal-categories/:id/meals').get(routes.api.auth.checkAuth, routes.api.meals.meals);
+    // Category
+
+	app.route('/api/meal-categories/:id/meals').get([routes.api.auth.checkAuth, cache], routes.api.meals.meals);
+	
 	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);
 	app.route('/api/meal-favourites/user/:id').get(routes.api.auth.checkAuth, routes.api.meals.getFavouritesForUser);
 	
@@ -261,9 +254,32 @@ exports = module.exports = function (app) {
 			create: routes.api.auth.checkIsAdmin,
 			delete: routes.api.auth.checkIsAdmin,
 			update: routes.api.auth.checkIsAdmin,
+		},
+	}).before('retrieve list', {
+		Post: cache,
+		Meal: cache,
+		PostCategory: cache,
+		Gallery: cache,
+		MealCategory: cache,
+		MealReview: cache,
+		MealOption: cache,
+		Photo: cache,
+	})
+	.after({
+		Meal: {
+			list: function(req, res, next) {
+				if (res.locals.body) {
+					let arr = res.locals.body.results;
+					
+					res.status(200).json({
+						results: arr,
+						success: true,
+					})
+				} else {
+					res.send(res.locals.status, res.locals.body);
+				}
+			}
 		}
-	}).after({
-		
 	}).start();
 
 };
