@@ -194,11 +194,11 @@ exports = module.exports = function (app) {
 		Post: {
 			envelop: "results",
 			populate: ["categories", "author"],
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
 		PostCategory: {
 			envelop: "results",
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
 		User: {
 			envelop: "results",
@@ -212,7 +212,7 @@ exports = module.exports = function (app) {
 		},
 		Photo: {
 			envelop: "results",
-			methods: ["list", "retrieve"]
+			methods: ["list", "retrieve", "create", "update", "remove"]
 		},
 		MealFavourite: {
 			envelop: 'results',
