@@ -247,14 +247,27 @@ exports = module.exports = function (app) {
 		},
 		Meal: {
 			create: routes.api.auth.checkIsAdmin,
-			delete: routes.api.auth.checkIsAdmin,
+			remove: routes.api.auth.checkIsAdmin,
 			update: routes.api.auth.checkIsAdmin,
 		},
 		MealCategory: {
 			create: routes.api.auth.checkIsAdmin,
-			delete: routes.api.auth.checkIsAdmin,
+			remove: routes.api.auth.checkIsAdmin,
 			update: routes.api.auth.checkIsAdmin,
 		},
+		Post: {
+			create: routes.api.auth.checkIsAdmin,
+			remove: routes.api.auth.checkIsAdmin,
+			update: routes.api.auth.checkIsAdmin,
+		},
+		Photo: {
+			create: routes.api.auth.checkIsAdmin,
+			remove: routes.api.auth.checkIsAdmin,
+			update: routes.api.auth.checkIsAdmin,
+		},
+		MealReview: {
+			remove: routes.api.auth.checkIsAdmin,
+		}
 	}).before('retrieve list', {
 		Post: cache,
 		Meal: cache,
