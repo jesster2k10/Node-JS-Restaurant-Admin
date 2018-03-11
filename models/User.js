@@ -13,6 +13,7 @@ User.add({
 	password: { type: Types.Password, initial: true, required: false, hidden: true },
 	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
 	addresses: { type: Types.Relationship, ref: 'Address', required: false, many: true, initial: false, },
+  createdAt: { type: Types.Datetime, required: false, default: new Date() },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true, required: false },
 	type: {
@@ -65,6 +66,12 @@ User.add({
 		initial: false,
 	}
 });
+
+User.schema.pre('save', async function (next) {
+  this.createdAt = new Date();
+  next();
+});
+
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function () {

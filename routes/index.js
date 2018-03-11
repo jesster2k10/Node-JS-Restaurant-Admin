@@ -128,6 +128,10 @@ exports = module.exports = function (app) {
 	app.post('/api/auth/session/verify', routes.api.auth.verify);
 	app.post('/api/auth/session/create',  routes.api.auth.signin);
 	app.delete('/api/auth/session/delete', routes.api.auth.signout);
+
+
+  // Panel
+  app.route('/api/panel/info').get(routes.api.auth.checkIsAdmin, routes.api.panel.getInfo);
 	
     // Category
 
