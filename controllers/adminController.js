@@ -20,9 +20,9 @@ exports.getNewCustomers = function (req, res) {
       }
 
       if (users) {
-        resolve(users.length)
+        resolve(users)
       } else {
-        resolve(0)
+        resolve([])
       }
     })
 }
@@ -38,15 +38,9 @@ exports.getNewOrders = function (req, res) {
       }
 
       if (orders) {
-        const total = orders.map(function (order) {
-          return order.total;
-        }).reduce(function (total, number) {
-          return total + Math.round(number);
-        }, 0);
-
-        resolve(total);
+        resolve(orders);
       } else {
-        resolve(0);
+        resolve([]);
       }
     })
   });
@@ -61,10 +55,9 @@ exports.getPendingOrders = function() {
       }
 
       if (orders) {
-        const total = orders.length;
-        resolve(total);
+        resolve(orders)
       } else {
-        resolve(0);
+        resolve([]);
       }
     })
   })
