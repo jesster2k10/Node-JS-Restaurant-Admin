@@ -130,9 +130,11 @@ exports = module.exports = function (app) {
 	app.delete('/api/auth/session/delete', routes.api.auth.signout);
 
   app.get('/api/extras', routes.api.meals.getExtras);
-	
-    // Category
 
+  // Panel
+  app.route('/api/panel/info').get(routes.api.auth.checkIsAdmin, routes.api.panel.getInfo);
+	
+  // Category
 	app.route('/api/meal-categories/:id/meals').get([routes.api.auth.checkAuth, cache], routes.api.meals.meals);
 	
 	app.route('/api/orders/user/:id').get(routes.api.auth.checkAuth, routes.api.checkout.getOrdersForUser);

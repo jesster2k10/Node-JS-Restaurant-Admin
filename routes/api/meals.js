@@ -35,6 +35,18 @@ exports.getReviews = function (req, res) {
 	})
 };
 
+exports.getExtras = function (req, res) {
+  Meal.model.find().where('isAnExtra', true).populate('categories').exec(function (err, items) {
+    if (err) {
+      res.json({ success: false, message: err.message || "Failed to fetch extras" });
+    }
+    
+    res.json({
+      results: items,
+    })
+  })
+};
+
 exports.getFavouritesForUser = function (req, res) {
 	MealFavourite.model.find().where('user', req.params.id).populate('meal').populate('user', '-password').exec(function (err, items) {
 		if (err) return res.json({
