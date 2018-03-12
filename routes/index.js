@@ -129,7 +129,14 @@ exports = module.exports = function (app) {
 	app.post('/api/auth/session/create',  routes.api.auth.signin);
 	app.delete('/api/auth/session/delete', routes.api.auth.signout);
 
-  app.get('/api/extras', routes.api.meals.getExtras);
+  app.route('/api/products')
+    .get(routes.api.meals.list)
+    .post(routes.api.auth.checkIsAdmin, routes.api.meals.create);
+
+  app.route('/api/products/:id')
+    .get(routes.api.meals.retrieve)
+    .delete(routes.api.auth.checkIsAdmin, routes.api.meals.delete)
+    .patch(routes.api.auth.checkIsAdmin, routes.api.meals.update);
 
   // Panel
   app.route('/api/panel/info').get(routes.api.auth.checkIsAdmin, routes.api.panel.getInfo);
