@@ -22,12 +22,12 @@ Meal.add(
 		initial: true,
 		default: false,
 	},
-	featuredImage: { type: Types.CloudinaryImage, required: true, initial: true, dependsOn: { isAnExtra: false } },
-	images: { type: Types.CloudinaryImages, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	featuredImage: { type: Types.CloudinaryImage, required: false, initial: true, dependsOn: { isAnExtra: false } },
+	images: { type: Types.CloudinaryImages, required: false, initial: true, dependsOn: { isAnExtra: false } },
 	description: { type: Types.Textarea, required: true, initial: true, dependsOn: { isAnExtra: false } },	
 	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true, dependsOn: { isAnExtra: false } },
 	cat_ids: { type: Types.Relationship, ref: 'MealCategory', many: true, required: false, initial: false, hidden: true, dependsOn: { isAnExtra: false } },
-	serves: { type: Types.Select, required: true, initial: true, options: [
+	serves: { type: Types.Select, required: false, initial: true, options: [
 		{ value: '1', label: '1' },
 		{ value: '2', label: '2' },
 		{ value: '3', label: '3' },
@@ -40,8 +40,8 @@ Meal.add(
 		{ value: '10', label: '10' },
 		{ value: '10+', label: '10+' }
 	], dependsOn: { isAnExtra: false } },
-	isAvailable: { type: Types.Boolean, required: true, initial: true},
-	isFeatured: { type: Types.Boolean, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	isAvailable: { type: Types.Boolean, required: false, default: true, initial: true},
+	isFeatured: { type: Types.Boolean, required: false, default: false, initial: true, dependsOn: { isAnExtra: false } },
 	extras: {
 		type: Types.Relationship,
 		ref: 'Meal',
