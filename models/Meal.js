@@ -25,7 +25,7 @@ Meal.add(
 	featuredImage: { type: Types.CloudinaryImage, required: false, initial: true, dependsOn: { isAnExtra: false } },
 	images: { type: Types.CloudinaryImages, required: false, initial: true, dependsOn: { isAnExtra: false } },
 	description: { type: Types.Textarea, required: true, initial: true, dependsOn: { isAnExtra: false } },	
-	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: true, initial: true, dependsOn: { isAnExtra: false } },
+	categories: { type: Types.Relationship, ref: 'MealCategory', many: true, required: false, initial: true, dependsOn: { isAnExtra: false } },
 	cat_ids: { type: Types.Relationship, ref: 'MealCategory', many: true, required: false, initial: false, hidden: true, dependsOn: { isAnExtra: false } },
 	serves: { type: Types.Select, required: false, initial: true, options: [
 		{ value: '1', label: '1' },
