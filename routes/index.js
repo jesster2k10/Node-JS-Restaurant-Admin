@@ -136,7 +136,7 @@ exports = module.exports = function (app) {
   app.route('/api/products/:id')
     .get(routes.api.meals.retrieve)
     .delete(routes.api.auth.checkIsAdmin, routes.api.meals.delete)
-    .patch(routes.api.auth.checkIsAdmin, routes.api.meals.update);
+    .put(routes.api.auth.checkIsAdmin, routes.api.meals.update);
 
   // Panel
   app.route('/api/panel/info').get(routes.api.auth.checkIsAdmin, routes.api.panel.getInfo);
