@@ -84,7 +84,7 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 
 keystone.start({
 	onStart: function () {
-		var hserver = keystone.httpServer;
+		var hserver = 3001;
 		var io = keystone.set('io', socket.listen(hserver)).get('io');
 
 		io.on('connection', function (socket) {
