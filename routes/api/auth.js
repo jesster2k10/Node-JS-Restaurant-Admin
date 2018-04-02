@@ -94,7 +94,6 @@ exports.checkIsAdmin = function checkUserMatches(req, res, next) {
 		});
 	}
 };
-
 exports.checkAuth = function checkAuth(req, res, next) {
 	// // you could check user permissions here too
 	// if (req.user) return next();
@@ -286,6 +285,63 @@ exports.getAddress = function getAddresses(req, res) {
 		});
 	});
 };
+
+exports.changePassword = function (req, res) {
+	let oldPassword = req.body.oldPassword || req.query.oldPassword;
+	let newPassword = req.body.newPassword || req.query.newPassword;
+	let id = req.params.id;
+
+	if (!oldPassword && !newPassword) {
+		res.status(400).json({
+			success: false,
+			message: 'Missing credentials',
+		});
+	}
+
+	User.model.findOne({ _id: id }).exec(function (err, user) {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+				message: err.message || 'Failed to change password',
+			});
+		} else {
+			user._.password.compare(oldPassword, function (err, isMatch) {
+				if (err) {
+					return res.status(400).json({
+						success: false,
+						message: err.message || 'Failed to change password',
+					});
+				}
+
+				if (isMatch) {
+					user.password = newPassword;
+					user.save()
+						.then(() => {
+							var token = jwt.sign(user, process.env.TOKEN_SECRET, {
+								expiresIn: '7d', 
+							});
+							res.status(200).json({
+								success: true,
+								token,
+							});
+						})
+						.catch((err) => {
+							res.status(400).json({
+								success: false,
+								message: err.message || 'Failed to change password',
+							});
+						});
+				} else {
+					return res.status(402).json({
+						success: false,
+						message: 'The password used was invalid',
+					});
+				}
+			});
+		}
+	})
+};
+
 
 exports.forgotPassword = function (req, res) {
 	async.waterfall([
