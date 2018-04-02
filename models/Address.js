@@ -18,12 +18,12 @@ var Address = new keystone.List('Address', {
 Address.add({
 	address: {
 		type: Types.Location,
-		required: true,
+		required: false,
 		initial: true
 	},
 	name: {
 		type: Types.Name,
-		required: true,
+		required: false,
 		initial: true
 	},
 	user: {
@@ -31,7 +31,7 @@ Address.add({
 		ref: 'User',
 		required: false,
 		initial: false
-	}
+	},
 });
 
 Address.register();

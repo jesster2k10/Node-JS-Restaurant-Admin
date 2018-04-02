@@ -8,12 +8,13 @@ var Types = keystone.Field.Types;
 var User = new keystone.List('User');
 
 User.add({
-	name: { type: Types.Name, required: false, index: true },
 	email: { type: Types.Email, initial: true, required: false, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: false, hidden: true },
-	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
 	addresses: { type: Types.Relationship, ref: 'Address', required: false, many: true, initial: false, },
-  createdAt: { type: Types.Datetime, required: false, default: new Date() },
+  	createdAt: { type: Types.Datetime, required: false, default: new Date() },
+}, 'Profile', {
+	profileImage: { type: Types.CloudinaryImage, initial: false, required: false, default: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png' },
+	name: { type: Types.Name, required: false, index: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true, required: false },
 	type: {
