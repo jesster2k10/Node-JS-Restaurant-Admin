@@ -139,7 +139,7 @@ exports = module.exports = function (app) {
 		.put(routes.api.auth.checkIsAdmin, routes.api.meals.update);
 		
 	app.route('/api/users/:id/password/change')
-		.post(routes.api.auth.checkUserMatches, routes.api.auth.changePassword);
+		.post(routes.api.auth.checkAuth, routes.api.auth.changePassword);
 
   // Panel
   app.route('/api/panel/info').get(routes.api.auth.checkIsAdmin, routes.api.panel.getInfo);
