@@ -100,6 +100,9 @@ exports.checkAuth = function checkAuth(req, res, next) {
 	// if (req.user) return next();
 	// return res.status(403).json({ 'error': 'no access' });
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	console.log(req.body);
+
 	// decode token
 	if (token) {
 
