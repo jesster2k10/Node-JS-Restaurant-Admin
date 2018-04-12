@@ -163,6 +163,9 @@ exports = module.exports = function (app) {
 	app.route('/api/payments/customer/charge').post(routes.api.auth.checkAuth, routes.api.payments.chargeCustomer);
 	app.route('/api/payments/customer/cards').get(routes.api.auth.checkAuth, routes.api.payments.getPaymentCards);
 
+	app.route('/api/address')
+		.post(routes.api.auth.checkAuth, routes.api.address.create);
+
 	//Explicitly define which lists we want exposed
 	restful.expose({
 		Address: {

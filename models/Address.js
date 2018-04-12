@@ -18,19 +18,19 @@ var Address = new keystone.List('Address', {
 Address.add({
 	address: {
 		type: Types.Location,
-		required: false,
-		initial: true
+		required: true,
+		initial: true,
 	},
 	name: {
 		type: Types.Name,
-		required: false,
-		initial: true
+		required: true,
+		initial: true,
 	},
 	user: {
 		type: Types.Relationship,
 		ref: 'User',
-		required: false,
-		initial: false
+		required: true,
+		initial: false,
 	},
 });
 
