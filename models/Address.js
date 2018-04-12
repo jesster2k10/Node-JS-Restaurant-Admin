@@ -33,7 +33,7 @@ Address.add({
 		initial: false,
 	},
 	phone: {
-		type: Types.String,
+		type: String,
 		required: false,
 	},
 	email: {
