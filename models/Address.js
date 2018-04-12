@@ -32,6 +32,14 @@ Address.add({
 		required: true,
 		initial: false,
 	},
+	phone: {
+		type: Types.String,
+		required: false,
+	},
+	email: {
+		type: Types.Email,
+		required: false,
+	},
 });
 
 Address.register();
