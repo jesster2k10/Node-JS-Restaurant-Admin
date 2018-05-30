@@ -223,7 +223,7 @@ exports = module.exports = function (app) {
 		User: {
 			envelop: "results",
 			populate: ["addresses"],
-			show : ["_id", "email", "isAdmin", "name"],
+			show : ["_id", "email", "isAdmin", "name", "profileImage", "addresses", "createdAt"],
 			methods: ["retrieve", "create", "update", "remove", "list"]
 		},
 		Transaction: {
