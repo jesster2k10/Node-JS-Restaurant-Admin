@@ -113,7 +113,7 @@ exports = module.exports = function (app) {
 	app.get('/api/cart/:id', routes.api.carts.getCart);
 	app.patch('/api/carts/:id/products', routes.api.carts.addProductToCart);
 	app.delete('/api/carts/:id/products', routes.api.carts.removeProductFromCart);
-	app.route('/api/carts/:id/products/all').get(routes.api.auth.checkAuth, routes.api.carts.clearCart);
+	app.route('/api/carts/:id/products/all', routes.api.carts.clearCart);
 	
 	// Meal Reviews
 	app.route('/api/meal-reviews/:id/').get(cache, routes.api.meals.getReviews);
@@ -250,7 +250,7 @@ exports = module.exports = function (app) {
 			envelop: "results",
 			methods: ["create", "list", "retrieve"],
 		}
-	}).before("update remove create list retrieve", {
+	}).before("update remove create", {
 		Order: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
