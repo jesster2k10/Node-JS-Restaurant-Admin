@@ -259,7 +259,13 @@ exports = module.exports = function (app) {
 		Photo: routes.api.auth.checkAuth,
 		MealFavourite: routes.api.checkAuth,
 		Address: routes.api.checkAuth,
-	}).before({
+	})
+	.before("list retrieve", {
+		Order: routes.api.auth.checkAuth,
+		Address: routes.api.checkAuth,
+		Transaction: routes.api.auth.checkAuth,
+	})
+	.before({
 		User: {
 			retrieve: routes.api.auth.checkUserMatches,
 			update: routes.api.auth.checkUserMatches,
@@ -287,7 +293,7 @@ exports = module.exports = function (app) {
 		},
 		MealReview: {
 			remove: routes.api.auth.checkIsAdmin,
-		}
+		},
 	}).before('retrieve list', {
 		Post: cache,
 		Meal: cache,
