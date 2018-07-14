@@ -20,8 +20,6 @@
 
 var keystone = require('keystone');
 var middleware = require('./middleware');
-var restaurant = require('../helpers/restaurant');
-var helper = require('../helpers/orders');
 var info = require('../helpers/information');
 var importRoutes = keystone.importer(__dirname);
 
@@ -34,12 +32,9 @@ var redis = require('redis');
 // create cache instance
 const cacheWithRedis = apicache
                       .options({ redisClient: redis.createClient(process.env.REDIS_URL) })
-                      .middleware
+                      .middleware;
 
 const cache = cacheWithRedis('5 minutes');
-
-// import tokens
-//var passport = require('passport');
 
 // Common Middleware
 keystone.pre('routes', middleware.initErrorHandlers);
@@ -50,34 +45,35 @@ keystone.pre('render', middleware.flashMessages);
 keystone.set('404', function(req, res, next) {
 	res.status(404).json({
 		success: false,
-		message: 'Requested resource not found!'
+		message: 'Requested resource not found!',
 	});
 });
 
 // Handle other errors
-keystone.set('500', function(err, req, res, next) {
-	var title, message;
+keystone.set('500', (err, req, res, next) => {
+	var message;
+
 	if (err instanceof Error) {
 		message = err.message;
 		err = err.stack;
 	}
 	res.status(400).json({
 		success: false,
-		error: message
-	})
+		error: message,
+	});
 });
 
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
 	api: importRoutes('./api'),
-	controlPanel: importRoutes('./controlPanel')
+	controlPanel: importRoutes('./controlPanel'),
 };
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	//Views
-	app.get('/', function(req, res) {
+	app.get('/', (req, res) => {
 		if (req.user) {
 			return res.redirect('/control_panel');
 		} else {
@@ -86,7 +82,7 @@ exports = module.exports = function (app) {
 	});
 	
 	app.all('/api/*', middleware.setCors);
-	app.options('/api*', function(req, res) { res.sendStatus(200); });
+	app.options('/api*', (req, res) => { res.sendStatus(200); });
 	
 	app.get('/control_panel', routes.controlPanel.panel);
 	app.get('/control_panel/login', routes.controlPanel.login);
@@ -98,7 +94,7 @@ exports = module.exports = function (app) {
 	app.put('/control_panel/api/restaurant-info', info.update);
 	app.get('/control_panel/preferences-generate', function (req, res) {
 		const token = jwt.sign({ user: req.user }, process.env.TOKEN_SECRET, {
-			expiresIn: '2629743m' // 5 years
+			expiresIn: '2629743m', // 5 years
 		});
 		res.render('preferences', { ios: true, name: 'iOS App Preferences', user: req.user, token: token })
 	});
@@ -172,85 +168,85 @@ exports = module.exports = function (app) {
 	//Explicitly define which lists we want exposed
 	restful.expose({
 		Address: {
-			populate: ["user"],
-			envelop: "results",
-			methods: ["retrieve", "create", "update", "remove"]
+			populate: ['user'],
+			envelop: 'results',
+			methods: ['retrieve', 'create', 'update', 'remove'],
 		},
 		Meal: {
-			populate: ["options", "extras", "categories", "create"],
-			methods: ["list", "retrieve", "remove", "update", "create"],
+			populate: ['options', 'extras', 'categories', 'create'],
+			methods: ['list', 'retrieve', 'remove', 'update', 'create'],
 			filter: {
 				isAnExtra: false,
 			},
-			envelop: "results",
+			envelop: 'results',
 		},
 		MealCategory: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		MealOption: {
-			envelop: "results",
-			methods: ["list", "retrieve"]
+			envelop: 'results',
+			methods: ['list', 'retrieve'],
 		},
 		MealReview: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "remove"],
-			populate: ["user", "meal"],
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'remove'],
+			populate: ['user', 'meal'],
 		},
 		Order: {
-			populate: ["products", "transaction"],
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			populate: ['products', 'transaction'],
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		Cart: {
-			populate: ["products", "options"],
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			populate: ['products', 'options'],
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		Gallery: {
-			envelop: "results",
-			methods: ["list", "retrieve"]
+			envelop: 'results',
+			methods: ['list', 'retrieve'],
 		},
 		Post: {
-			envelop: "results",
-			populate: ["categories", "author"],
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			envelop: 'results',
+			populate: ['categories', 'author'],
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		PostCategory: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		User: {
-			envelop: "results",
-			populate: ["addresses"],
-			show : ["_id", "email", "isAdmin", "name", "profileImage", "addresses", "createdAt"],
-			methods: ["retrieve", "create", "update", "remove", "list"]
+			envelop: 'results',
+			populate: ['addresses'],
+			show : ['_id', 'email', 'isAdmin', 'name', 'profileImage', 'addresses', 'createdAt'],
+			methods: ['retrieve', 'create', 'update', 'remove', 'list'],
 		},
 		Transaction: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update"]
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update'],
 		},
 		Photo: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		MealFavourite: {
 			envelop: 'results',
-			methods: ['list', 'retrieve', 'create', 'remove']
+			methods: ['list', 'retrieve', 'create', 'remove'],
 		},
 		Reservation: {
-			envelop: "results",
-			methods: ["list", "retrieve", "create", "update", "remove"]
+			envelop: 'results',
+			methods: ['list', 'retrieve', 'create', 'update', 'remove'],
 		},
 		Table: {
-			envelop: "results",
-			methods: ["list"]
+			envelop: 'results',
+			methods: ['list'],
 		},
 		Notification: {
-			envelop: "results",
-			methods: ["create", "list", "retrieve"],
-		}
-	}).before("update remove create", {
+			envelop: 'results',
+			methods: ['create', 'list', 'retrieve'],
+		},
+	}).before('update remove create list retrieve', {
 		Order: routes.api.auth.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
 		Post: routes.api.auth.checkAuth,
@@ -260,7 +256,7 @@ exports = module.exports = function (app) {
 		MealFavourite: routes.api.checkAuth,
 		Address: routes.api.checkAuth,
 	})
-	.before("list retrieve", {
+	.before('list retrieve', {
 		Order: routes.api.auth.checkAuth,
 		Address: routes.api.checkAuth,
 		Transaction: routes.api.auth.checkAuth,
@@ -306,7 +302,7 @@ exports = module.exports = function (app) {
 	})
 	.after({
 		Meal: {
-			list: function(req, res, next) {
+			list: (req, res, next) => {
 				if (res.locals.body) {
 					let arr = res.locals.body.results;
 					
