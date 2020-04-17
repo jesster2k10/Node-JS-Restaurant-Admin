@@ -20,7 +20,7 @@
     "keystone-email": "1.0.5",
     "lodash": "^4.17.13",
     "moment": "^2.21.0",
-    "mongoose": "^4.13.0",
+    "mongoose": "^5.7.5",
     "node-geocoder": "^3.21.1",
     "node-pushnotifications": "^1.0.18",
     "node-sass": "4.5.0",
