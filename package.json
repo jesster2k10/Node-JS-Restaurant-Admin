@@ -8,7 +8,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.0.0-beta.4",
     "apicache": "^1.2.0",
-    "async": "^2.1.4",
+    "async": "^3.2.2",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "braintree": "^2.3.0",
