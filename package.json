@@ -15,7 +15,7 @@
     "dotenv": "4.0.0",
     "express-jwt-blacklist": "^1.1.0",
     "geolib": "^2.0.24",
-    "jsonwebtoken": "^7.4.3",
+    "jsonwebtoken": "^9.0.0",
     "keystone": "^4.0.0-beta.5",
     "keystone-email": "1.0.5",
     "lodash": "^4.17.13",
